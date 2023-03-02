@@ -1,0 +1,163 @@
+#selectCtrl {
+	position: absolute;
+	width: 35%;
+	height: 10%;
+	top: 85%;
+	left: 30%;
+	/* background-color: #ffffff; */
+	background-color: rgba(255, 255, 255, 0.3);
+	/* opacity: 0.5; */
+	z-index: 1;
+	text-align: center;
+	padding-top: 1.2%;
+	border-radius: 25%;
+	/* align-items: center; */
+}
+
+#PortOperationAbility_radarGraph {
+	position: absolute;
+	width: 40%;
+	height: 40%;
+	top: 10%;
+	left: 27%;
+	/* background-color: aliceblue; */
+	z-index: 1;
+	opacity: 0.9;
+}
+
+#TrainNumInOut_graph {
+	position: absolute;
+	width: 26%;
+	height: 30%;
+	top: 6.5%;
+	left: 0%;
+	/* background-color: aliceblue; */
+	z-index: 1;
+	opacity: 0.9;
+}
+
+#TrainPartsTimeDistribution_graph {
+	position: absolute;
+	width: 26%;
+	height: 35%;
+	top: 32%;
+	left: 0%;
+	/* background-color: aliceblue; */
+	z-index: 1;
+	opacity: 0.9;
+}
+
+#BoxRetentionTimeChange_graph {
+	position: absolute;
+	width: 40%;
+	height: 40%;
+	top: 42%;
+	left: 27%;
+	/* background-color: aliceblue; */
+	z-index: 1;
+	opacity: 0.9;
+}
+
+#BoxRetentionTimeDistribution_graph {
+	position: absolute;
+	width: 32%;
+	height: 38%;
+	top: 57%;
+	right: 0%;
+	/* background-color: aliceblue; */
+	z-index: 1;
+	opacity: 0.9;
+}
+
+#BoxNumInOutChange_graph {
+	position: absolute;
+	width: 32%;
+	height: 40%;
+	top: 11%;
+	right: -1%;
+	/* background-color: aliceblue; */
+	z-index: 1;
+	opacity: 0.9;
+}
+
+#TrainExpectedAndActualPlan_graph {
+	position: absolute;
+	width: 25%;
+	height: 28%;
+	top: 70%;
+	left: 1%;
+	/* background-color: aliceblue; */
+	z-index: 1;
+	opacity: 0.9;
+}
+
+
+
+
+
+
+#SorceOfSupplyGoodsNumChange_graph {
+	position: absolute;
+	width: 20%;
+	height: 30%;
+	top: 8%;
+	left: 59%;
+	/* background-color: aliceblue; */
+	z-index: 1;
+	opacity: 0.9;
+}
+
+#SorceOfSupplyGoodsWeightChange_graph {
+	position: absolute;
+	width: 20%;
+	height: 30%;
+	top: 8%;
+	left: 79%;
+	/* background-color: aliceblue; */
+	z-index: 1;
+	/* opacity: 0.9; */
+}
+
+#SourceOfSupplyGoodsValueDistribution_pieGraph {
+	position: absolute;
+	width: 21%;
+	height: 30%;
+	top: 40%;
+	right: 2%;
+	/* background-color: aliceblue; */
+	z-index: 1;
+	opacity: 0.9;
+}
+
+#DestinationGoodsValueDistribution_pieGraph {
+	position: absolute;
+	width: 21%;
+	height: 30%;
+	top: 40%;
+	right: 16%;
+	/* background-color: aliceblue; */
+	z-index: 1;
+	opacity: 0.9;
+}
+
+#TopGoodsNumCities_graph {
+	position: absolute;
+	width: 15%;
+	height: 30%;
+	top: 70%;
+	right: 15%;
+	/* background-color: aliceblue; */
+	z-index: 1;
+	opacity: 0.9;
+}
+
+#TopGoodsWeightCities_graph {
+	position: absolute;
+	width: 15%;
+	height: 30%;
+	top: 70%;
+	right: 1%;
+	/* background-color: aliceblue; */
+	z-index: 1;
+	opacity: 0.9;
+}

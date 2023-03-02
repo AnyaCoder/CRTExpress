@@ -1,0 +1,18 @@
+#LeftTopGraph {
+    font-size: 14px;
+}
+
+#LeftTopGraph .echarts-title {
+    color: #333;
+}
+
+#LeftTopGraph .echarts-x-axis-name,
+#LeftTopGraph .echarts-y-axis-name {
+    color: #666;
+    font-size: 12px;
+}
+
+#LeftTopGraph .echarts-label {
+    color: #666;
+    font-size: 12px;
+}

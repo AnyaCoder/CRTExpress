@@ -1,0 +1,118 @@
+#title {
+	position: absolute;
+	width: 85%;
+	height: 5%;
+	top: 0;
+	left: 15%;
+	/* background-color: white; */
+	text-align: center;
+	color: #545c64;
+	font-size: 200%;
+	font-family: "楷体";
+	font-weight: bold;
+	border-bottom-left-radius: 30%;
+	border-bottom-right-radius: 30%;
+	box-shadow: 6px 6px 1px #888888;
+
+	z-index: 1;
+
+	background: #FFEFBA;
+	/* fallback for old browsers */
+	background: -webkit-linear-gradient(to left, #FFFFFF, #FFEFBA);
+	/* Chrome 10-25, Safari 5.1-6 */
+	background: linear-gradient(to left, #FFFFFF, #FFEFBA);
+	/* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+
+
+	/* animation: gradientBG 5s ease infinite; */
+}
+
+#bodyPart {
+	/* animation: gradientBodyBG 5s ease infinite; */
+	background-color: #fbfbf1;
+}
+
+#navigationBar_title {
+	position: absolute;
+	width: 14.5%;
+	height: 4.2%;
+	left: 0;
+	top: 0;
+	background: #f4e6cf;
+	border: 3px solid #b47f47;
+	text-align: center;
+	font-size: 32px;
+	font-weight: bold;
+	font-family: "楷体";
+}
+
+#navigationBar {
+	position: absolute;
+	width: 15%;
+	height: 95%;
+	left: 0;
+	top: 5%;
+	background-color: white;
+	/* text-align: center; */
+	font-size: 25px;
+	font-family: "微软雅黑";
+	overflow: auto;
+
+	box-shadow: 6px 6px 3px #ADA996;
+
+	/* background-image: linear-gradient(#DE3F7C, #EA517F, #EC7696); */
+}
+
+#GoodsValueDistribution_graph {
+	position: absolute;
+	width: 40.5%;
+	height: 60.5%;
+	left: 16%;
+	top: 8%;
+	background-color: white;
+	border-radius: 20px;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04)
+}
+
+#GoodsFlowChange_graph {
+	position: absolute;
+	width: 42.5%;
+	height: 60.5%;
+	left: 57.5%;
+	top: 8%;
+	border-radius: 20px;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04)
+}
+
+#infoSelect_button {
+	position: absolute;
+	width: 80%;
+	height: 15%;
+	left: 17.5%;
+	top: 75%;
+	/* background-color: #FFEFBA; */
+	background-image: radial-gradient(rgba(246, 231, 197, 0) 10%, rgba(246, 231, 197, 0.8));
+	border-radius: 25px;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
+}
+
+#blankSpace {
+	position: absolute;
+	width: 85%;
+	height: 3%;
+	top: 97%;
+	left: 15%;
+	/* background-color: #ffffff; */
+	border-top-left-radius: 40%;
+	border-top-right-radius: 40%;
+
+	background: #FFEFBA;
+	/* fallback for old browsers */
+	background: -webkit-linear-gradient(to right, #FFFFFF, #FFEFBA);
+	/* Chrome 10-25, Safari 5.1-6 */
+	background: linear-gradient(to right, #FFFFFF, #FFEFBA);
+	/* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+	/* animation: gradientBG 5s ease infinite; */
+}

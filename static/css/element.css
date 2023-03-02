@@ -1,0 +1,112 @@
+input.el-input__inner {
+	height: 40px;
+}
+
+#toplan {
+	z-index: 2;
+	position: absolute;
+	width: 800px;
+	height: 10%;
+	left: 0px;
+	top: 0px;
+}
+
+#Title {
+	z-index: 2;
+	position: absolute;
+	width: 800px;
+	height: 10%;
+	left: 1200px;
+	top: 0px;
+}
+
+.el-menu-demo {
+	left: 15%;
+	border-bottom-right-radius: 25px;
+	border-bottom-left-radius: 25px;
+}
+
+.el-header,
+.el-footer {
+	background-color: #B3C0D1;
+	color: #333;
+	text-align: center;
+	line-height: 60px;
+}
+
+.el-switch {
+	width: 100px;
+}
+
+.el-switch__label--left {
+	position: absolute;
+	left: 35px;
+	color: #fff;
+	z-index: -1111;
+}
+
+.el-switch__core {
+	width: 100px !important;
+}
+
+.el-switch__label--right {
+	position: absolute;
+	right: 40px;
+	color: #fff;
+	z-index: -1111;
+}
+
+.el-switch__label--right.is-active {
+	z-index: 1111;
+	color: #fff !important;
+}
+
+.el-switch__label--left.is-active {
+	z-index: 1111;
+	color: #fff !important;
+}
+
+.el-menu--horizontal>.el-menu-item {
+	border-bottom: none;
+	text-align: center;
+}
+
+.el-menu--horizontal>.el-menu-item.is-active {
+	border-bottom: none;
+}
+
+.el-menu-item.od {
+
+	background-image: linear-gradient(white, lightgray);
+
+}
+
+.el-menu-item.od.is-active {
+
+	background-image: linear-gradient(white, lightskyblue);
+
+}
+
+.el-menu-item.hy {
+
+	background-image: linear-gradient(white, lightgray);
+
+}
+
+.el-menu-item.hy.is-active {
+
+	background-image: linear-gradient(white, lightskyblue);
+
+}
+.el-menu-item.bd {
+
+	background-image: linear-gradient(white, lightgray);
+	border-radius: 25px;
+}
+
+.el-menu-item.bd.is-active {
+
+	background-image: linear-gradient(white, lightskyblue);
+	border-radius: 25px;
+}
+

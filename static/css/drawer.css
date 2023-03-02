@@ -1,0 +1,187 @@
+* {
+	box-sizing: border-box;
+}
+
+body {
+	display: grid;
+	place-items: center;
+	height: 100vh;
+}
+
+.button {
+	border: none;
+	display: block;
+	position: relative;
+	padding: 0.2em 0.8em;
+	font-size: 20px;
+	background: transparent;
+	/* 背景透明 */
+	cursor: pointer;
+	user-select: none;
+	color: antiquewhite;
+	overflow: hidden;
+	/* 溢出隐藏 */
+	outline: none;
+	/* 隐藏边框 */
+	cursor: pointer;
+}
+
+/* .button:focus, */
+.button:hover {
+	color: white;
+}
+
+/* 点击聚焦 */
+.button:active:focus {
+	opacity: 0.9;
+	/* 透明 */
+}
+
+.drawer {
+	width: 0;
+	height: 100%;
+	position: fixed;
+	top: 0;
+	z-index: 1000;
+	display: block !important;
+}
+
+.drawer.right {
+	right: 0;
+}
+
+.drawer.active {
+	width: 100%;
+}
+
+.drawer-mask {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	opacity: 0;
+	filter: alpha(opacity=45);
+	transition: opacity .3s linear;
+}
+
+.drawer-mask-show {
+	background-color: rgba(0, 0, 0, .45);
+}
+
+.drawer.active .drawer-mask {
+	opacity: 1;
+}
+
+.drawer-content {
+	height: 100%;
+	background-color: #fff;
+	/* background-color: #333; */
+	box-shadow: none;
+	transition: transform .3s cubic-bezier(.7, .3, .1, 1), box-shadow .3s cubic-bezier(.7, .3, .1, 1);
+	position: absolute;
+	top: 0;
+}
+
+.drawer.left .drawer-content {
+	transform: translateX(-100%);
+	box-shadow: 2px 0 8px rgba(0, 0, 0, .15);
+}
+
+.drawer.right .drawer-content {
+	right: 0;
+	transform: translateX(100%);
+	box-shadow: -2px 0 8px rgba(0, 0, 0, .15);
+}
+
+.drawer.active .drawer-content {
+	transform: none;
+}
+
+.drawer-content-header {
+	height: 55px;
+	line-height: 55px;
+	border-bottom: 1px solid #e8e8e8;
+	background: #005AA7;
+	/* fallback for old browsers */
+	background: -webkit-linear-gradient(to right, #FFFDE4, #005AA7);
+	/* Chrome 10-25, Safari 5.1-6 */
+	background: linear-gradient(to right, #FFFDE4, #005AA7);
+	/* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+	animation: gradientBG 5s infinite;
+}
+
+@keyframes gradientBG {
+	from {
+		background: #005AA7;
+		/* fallback for old browsers */
+		background: -webkit-linear-gradient(to right, #FFFDE4, #005AA7);
+		/* Chrome 10-25, Safari 5.1-6 */
+		background: linear-gradient(to right, #FFFDE4, #005AA7);
+	}
+
+	to {
+		background: #005AA7;
+		/* fallback for old browsers */
+		background: -webkit-linear-gradient(to left, #FFFDE4, #005AA7);
+		/* Chrome 10-25, Safari 5.1-6 */
+		background: linear-gradient(to left, #FFFDE4, #005AA7);
+	}
+}
+
+.drawer-content-title {
+	color: #0b328c;
+	font-weight: 600;
+	font-size: 200%;
+	margin: 0 20px;
+}
+
+
+.drawer-close {
+	position: absolute;
+	top: 0;
+	right: 20px;
+	font-size: 22px;
+	cursor: pointer;
+}
+
+.drawer-content-body {
+	padding: 24px;
+	max-height: calc(100%);
+	overflow: auto;
+	background-image: radial-gradient(#d4e5ef 0%, #88abda);
+	/* animation: gradientBG 3s ease infinite; */
+}
+
+@keyframes gradientBG {
+	0% {
+		background-image: radial-gradient(#d4e5ef 0%, #88abda);
+	}
+
+	25% {
+		background-image: radial-gradient(#d4e5ef 5%, #88abda);
+	}
+
+	50% {
+		background-image: radial-gradient(#d4e5ef 10%, #88abda);
+	}
+
+	75% {
+		background-image: radial-gradient(#d4e5ef 5%, #88abda);
+	}
+
+	100% {
+		background-image: radial-gradient(#d4e5ef 0%, #88abda);
+	}
+}
+
+.drawer-content-body::-webkit-scrollbar {
+	width: 6px;
+	height: 6px;
+	background-color: hsla(0, 0%, 100%, 0);
+}
+
+.drawer-content-body::-webkit-scrollbar-thumb {
+	border-radius: 3px;
+	background-color: #cfd6dd;
+}

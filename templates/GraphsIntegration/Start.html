@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<style>
+			.el-menu-vertical-demo:not(.el-menu--collapse) {
+				min-height: 400px;
+			}
+
+			.el-carousel__item h3 {
+				color: #475669;
+				font-size: 18px;
+				opacity: 0.75;
+				line-height: 300px;
+				margin: 0;
+				text-align: center;
+			}
+
+			.el-carousel__item:nth-child(2n) {
+				background-color: #eff6fc;
+			}
+
+			.el-carousel__item:nth-child(2n+1) {
+				background-color: #eff6fc;
+			}
+
+			#navigationBar {
+				position: absolute;
+				width: 15%;
+				height: 105%;
+				left: 0;
+				top: 0;
+				background-color: white;
+				/* text-align: center; */
+				font-size: 25px;
+				font-family: "微软雅黑";
+				overflow: auto;
+			}
+		</style>
+		<meta charset="utf-8">
+		<title>集成图表</title>
+		<script type="text/javascript" src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.6.0.min.js"></script>
+		<script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts@5.3.3/dist/echarts.min.js"></script>
+		<link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css" />
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+		<script src="https://unpkg.com/element-ui/lib/index.js"></script>
+		<title>集装箱接入发出</title>
+	</head>
+	<body>
+		<div id="navigationBar">
+			<el-aside id="menu" style="position:absolute;height: 100%;z-index:2;width: 100%;">
+				<el-row class="tac" style="height: 100%;width: 100%;">
+					<el-col :span="12" style="height: 100%;width: 100%;">
+						<el-menu style="height: 100%;" class="el-menu-vertical-demo" @open="handleClose"
+							@close="handleClose" :default-openeds="openeds">
+							<el-submenu index="1">
+								<template slot="title">
+									<i class="el-icon-location"></i>
+									<span>态势分析大屏</span>
+								</template>
+								<el-menu-item index="1-1">
+									<el-link :underline="false" href="/" target="_self" icon="el-icon-s-promotion">
+										<font color="#333" size=3px>货运态势分析</font>
+									</el-link>
+								</el-menu-item>
+								<el-menu-item index="1-2">
+									<el-link :underline="false" href="/HY" target="_self" icon="el-icon-truck">
+										<font color="#333" size=3px>班列集装箱态势分析</font>
+									</el-link>
+								</el-menu-item>
+							</el-submenu>
+							<el-submenu index="2">
+								<template slot="title">
+									<i class="el-icon-menu"></i>
+									<span>详情统计</span>
+								</template>
+								<el-menu-item-group>
+									<el-menu-item index="2-1">
+										<el-link :underline="false" href="/MenuCover" target="_self"
+											icon="el-icon-s-platform">
+											<font color="#333" size=3px>班列掠影</font>
+										</el-link>
+									</el-menu-item>
+								</el-menu-item-group>
+								<el-menu-item-group>
+									<el-menu-item index="2-2">
+										<el-link :underline="false" href="/ContainersGraph" target="_self"
+											icon="el-icon-s-data">
+											<font color="#333" size=2px>集装箱部分</font>
+										</el-link>
+									</el-menu-item>
+									<el-menu-item indexd="2-3">
+										<el-link :underline="false" href="/TrainSituationAnalysis" target="_self"
+											icon="el-icon-s-data">
+											<font color="#333" size=2px>班列情况分析</font>
+										</el-link>
+									</el-menu-item>
+									<el-menu-item indexd="2-4">
+										<el-link :underline="false" href="/PortOperationAbilityAnalysis" target="_self"
+											icon="el-icon-s-data">
+											<font color="#333" size=2px>口岸/站点作业能力分析</font>
+										</el-link>
+									</el-menu-item>
+									<el-menu-item indexd="2-5">
+										<el-link :underline="false" href="/GoodsGraph" target="_self"
+											icon="el-icon-s-data">
+											<font color="#333" size=2px>货物部分</font>
+										</el-link>
+									</el-menu-item>
+								</el-menu-item-group>
+							</el-submenu>
+				</el-row>
+				<script>
+					var menu = new Vue({
+						el: "#menu",
+						data() {
+							return {
+								openeds: ['1', '2'],
+								uniqueOpened: false
+							}
+						},
+						methods: {
+							handleOpen(key, keyPath) {
+								console.log(key, keyPath);
+							},
+							handleClose(key, keyPath) {
+								console.log(key, keyPath);
+							},
+
+						}
+					})
+				</script>
+			</el-aside>
+		</div>
+		<div id="carousel" style=" z-index: 1;top: 20px;width: 100%;">
+			<el-carousel indicator-position="outside" height="650px" type="card">
+				<el-carousel-item>
+					<img src="../../static/img/inctroduction.jpg" alt="图片加载失败" width="100%" height="55%">
+
+					<h2>&emsp;简介</h2>
+					<div style="position:absolute;left:5%;height: 25%;width: 90%;">
+						<el-card shadow="always" height="15%">
+							中欧班列是指按照固定车次、线路等条件开行，往来于中国与欧洲及沿线各国的国际铁路联运班列。
+							截至2018年6月底，班列累计开行量已突破10000列，运送货物近80万标箱，到达欧洲14个国家42个城市，运输网络覆盖亚欧大陆的主要区域。
+							<p>中欧班列以其运距短、速度快、安全性高的特征，以及安全快捷、绿色环保、受自然环境影响小的优势，成为国际物流中陆路运输的骨干方式。
+								在“一带一路”战略中起重要作用。</p>
+						</el-card>
+					</div>
+				</el-carousel-item>
+				<el-carousel-item>
+					<img src="../../static/img/trans_map.png" alt="图片加载失败" width="100%" height="60%">
+					<h2>&emsp;路线规划</h2>
+					<div style="position: absolute;left: 5%;width: 90%;">
+						<el-card shadow="always" height="15%">
+							<p>中欧班列共铺划了西中东3条通道运行线：</p>
+							<p>1.西部通道由我国中西部经阿拉山口（霍尔果斯）出境
+								<br>2.中部通道由我国华北地区经二连浩特出境
+								<br>3.东部通道由我国东南部沿海地区经满洲里（绥芬河）出境。
+							</p>
+						</el-card>
+					</div>
+				</el-carousel-item>
+				<el-carousel-item>
+					<h2>研究方向--集装箱</h2>
+
+					<div style="position:absolute;left: 3%;">
+						<h4>研究意义</h4>
+						<p style="position:absolute;left:7%;width: 650px;">
+							通过集装箱的数量和位置分布刻画中欧班列运输资源（集装箱）的现状；预测未来集装箱位置分布情况</p>
+					</div>
+
+
+					<div style="position:absolute; top:30%; width: 100%; height: 70%;">
+						<img src="../../static/img/containers.png" alt="图片加载失败" width="100%" height="100%">
+					</div>
+				</el-carousel-item>
+
+				<el-carousel-item>
+					<h2>研究方向--港口</h2>
+					<div style="position:absolute;left: 3%;">
+						<h4>研究意义</h4>
+						<p style="position:absolute;left:7%;width: 650px;">分析列车通过口岸时间的分布情况，统计口岸的箱子数量；预测箱子预计到达的数量
+						</p>
+					</div>
+
+					<div style="position:absolute; top:30%; width: 100%; height: 70%;">
+						<img src="../../static/img/port.jpg" alt="图片加载失败" width="100%" height="100%">
+					</div>
+				</el-carousel-item>
+
+				<el-carousel-item>
+					<h2>研究方向--班列</h2>
+					<div style="position:absolute;left: 3%;">
+
+						<h4>研究意义</h4>
+						<p style="position:absolute;left:7%;width: 650px;">
+							通过统计班列在线路上运输的时间，结合口岸停留时间刻画班列运行的时间成本；预测班列的预计到达时间ETA</p>
+
+					</div>
+
+					<div style="position:absolute; top:30%; width: 100%; height: 70%;">
+						<img src="../../static/img/train.jpg" alt="图片加载失败" width="100%" height="100%">
+					</div>
+				</el-carousel-item>
+
+				<el-carousel-item>
+					<h2>研究方向--货物</h2>
+					<div style="position:absolute;left: 3%;">
+
+						<h4>研究意义</h4>
+						<p style="position:absolute;left:7%;width: 650px;">
+							通过统计运输货物的数量、价值刻画中欧班列当前经济运行状况；预测基于不同OD的贸易额、货物量，通过某地的货物需求量、输出量预测货物运输需求</p>
+					</div>
+
+					<div style="position:absolute; top:30%; width: 100%; height: 70%;">
+						<img src="../../static/img/goods.jpg" alt="图片加载失败" width="100%" height="100%">
+					</div>
+				</el-carousel-item>
+
+				<!-- <el-carousel-item v-for="item in 1" :key="item">
+					<div id="radar-container" style="width: 45%; height:45%;display: inline-block;"></div>
+					<div id="box-container" style="width: 45%; height: 45%; display: inline-block;"></div>
+					<div id="timedist-container" style="width: 45%; height: 45%; display: inline-block"></div>
+					<div id="traintime-container" style="width: 45%; height: 45%; display: inline-block"></div>
+				</el-carousel-item>
+				<el-carousel-item v-for="item in 1" :key="item">
+					<div id="timespan-container" style="width: 45%; height:45%;display: inline-block;"></div>
+					<div id="train_boxplot-container" style="width: 45%; height:45%;display: inline-block;"></div>
+					<div id="traininfo-container" style="width: 45%; height:45%;display: inline-block;"></div>
+					<div id="trainplan-container" style="width: 45%; height:45%;display: inline-block;"></div>
+				</el-carousel-item> -->
+
+			</el-carousel>
+		</div>
+		</el-container>
+		</el-container>
+
+		<script>
+			var carousel = new Vue({
+				el: "#carousel"
+			})
+		</script>
+
+		<script type="text/javascript" src="../static/js/ctrl_box/ctrl_box_elements.js"></script>
+		<script type="text/javascript" src="../static/js/ctrl_box/ctrl_box_elements.js"></script>
+
+		<script type="text/javascript" src="../static/js/ctrl_radar/ctrl_radar.js"></script>
+		<script type="text/javascript" src="../static/js/ctrl_radar/ctrl_radar_datepicker.js"></script>
+
+		<script type="text/javascript" src="../static/js/bak/ctrl_chart.js"></script>
+		<script type="text/javascript" src="../static/js/bak/main.js"></script>
+
+		<script type="text/javascript" src="../static/js/ctrl_timedist/ctrl_timedist.js"></script>
+		<script type="text/javascript" src="../static/js/ctrl_timedist/ctrl_timedist_elements.js"></script>
+
+
+		<script type="text/javascript" src="../static/js/ctrl_timespan/ctrl_timespan.js"></script>
+		<script type="text/javascript" src="../static/js/ctrl_timespan/ctrl_timespan_elements.js"></script>
+
+		<script type="text/javascript" src="../static/js/ctrl_train_boxplot/ctrl_train_boxplot.js"></script>
+		<script type="text/javascript" src="../static/js/ctrl_train_boxplot/ctrl_train_boxplot_elements.js"></script>
+
+		<script type="text/javascript" src="../static/js/ctrl_traininfo/ctrl_traininfo.js"></script>
+		<script type="text/javascript" src="../static/js/ctrl_traininfo/ctrl_traininfo_elements.js"></script>
+
+		<script type="text/javascript" src="../static/js/ctrl_trainplan/ctrl_trainplan.js"></script>
+		<script type="text/javascript" src="../static/js/ctrl_trainplan/ctrl_trainplan_elements.js"></script>
+
+		<script type="text/javascript" src="../static/js/ctrl_traintime/ctrl_traintime.js"></script>
+		<script type="text/javascript" src="../static/js/ctrl_traintime/ctrl_traintime_elements.js"></script>
+
+	</body>
+</html>

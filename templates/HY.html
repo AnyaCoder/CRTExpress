@@ -1,0 +1,185 @@
+<!-- 
+城市转换经纬度工具网址：
+ http://maplocation.sjfkai.com/
+ -->
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>货源地分析</title>
+		<link rel="shortcut icon" href="../static/img/Favicon/HY.ico" />
+
+		<!-- 高德地图相关 -->
+		<script src="https://webapi.amap.com/maps?v=1.4.15&key=93c37a776b049cdb0b88f7a46b2dee1c"></script>
+		<script src="https://webapi.amap.com/loader.js"></script>
+		<script src="https://webapi.amap.com/maps?v=2.0&key=93c37a776b049cdb0b88f7a46b2dee1c&plugin=AMap.CircleEditor">
+		</script>
+
+		<!-- Element UI 相关 -->
+		<link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+		<script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+		<script src="https://unpkg.com/element-ui/lib/index.js"></script>
+
+
+		<!-- 下面引入本地文件 -->
+		<script src="../static/js/echarts.js"></script>
+		<script src="../static/js/jQuery.js"></script>
+		<script src="../static/js/globalVar/variable.js"></script>
+
+		<!-- 相关函数 -->
+		<script type="text/javascript" src="../static/js/Map/HY_Map/HY_DataOperationFun.js"></script>
+
+		<!-- 整个大屏样式布局css文件 -->
+		<link rel="stylesheet" href="../static/css/Map/HY_Map.css" />
+
+		<!-- 顶部导航栏的按钮 -->
+		<link rel="stylesheet" type="text/css" href="../static/css/element.css" />
+
+		<!-- 引入与图表主题相关的js文件 -->
+		<script src="../static/js/GraphTheme/dark.js"></script>
+		<script src="../static/js/GraphTheme/purple-passion.js"></script>
+		<script src="../static/js/GraphTheme/chalk.js"></script>
+
+		<!-- 抽屉部分 -->
+		<style type="text/css">
+			* {
+				padding: 0;
+				margin: 0;
+			}
+
+			html,
+			body {
+				height: 100%;
+				overflow: hidden;
+			}
+		</style>
+	</head>
+	<body style="background-color: rgba(0, 0, 0, 0.9);">
+		<link rel="stylesheet" type="text/css" href="../static/css/toplan.css" />
+		<!-- 下面是页面标题 -->
+		<div id="toplan">
+
+			<el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" @select="handleSelect" style="position: absolute; left:0px; width: 200%;
+				box-shadow: 0px 0px 10px 6px rgba(0,0,0,0.3);
+				background-image: linear-gradient(-45deg, #effcfa, #f2dfd2, #99cfdd, #f2a6a6, #c1a4cd, #8561a1);
+				background-size: 200% 200%;
+				animation: gradientBG 5s ease infinite;">
+				<el-menu-item index="1" style="left: 5%; font-size: 18px; width: 80px;">
+				</el-menu-item>
+				<div id="menuOD" style="position:absolute; left:2%; width: 5%; z-index: 3">
+					<el-menu-item class="od" index="2" onclick="showOD()"
+						style="top:2px;  font-size: 18px; width: 200px;border-bottom-left-radius:25px;border-top-left-radius:25px;">
+						<el-link :underline="false" href="/" target="_self" style="top: -4px;left:10px;">
+							<font style="font-weight: bold" color="#000010" size=5px face='楷体' weight='bold'>货运态势分析
+							</font>
+						</el-link>
+						<i class="el-icon-arrow-left"></i>
+
+					</el-menu-item>
+				</div>
+				<div id="menuHY" style="position:absolute; left:12%;width: 5%; z-index: 2">
+					<el-menu-item class="hy" index="3" onclick="showHY()"
+						style="position:absolute; top:2px; font-size: 18px; width: 280px;border-bottom-right-radius:25px;border-top-right-radius:25px;">
+						<i class="el-icon-arrow-right"></i>
+						<el-link :underline="false" href="/HY" target="_self" style="top: -4px; left: -16px">
+							<font style="font-weight: bold" color="#000010" size=5px face='楷体' weight='bold'>班列集装箱态势分析
+							</font>
+						</el-link>
+					</el-menu-item>
+				</div>
+				<img src="../static/img/Logo/LOGOtrain.png" style="position:absolute; left: 24%; top: -50%" width="280"
+					height="110" alt="">
+				<img src="../static/img/Logo/CRexpress.png" style="position:absolute; left: 35%; top: -2%" width="450"
+					height="60" alt="">
+				<div id="menuTable" style="position:absolute; left:38%;width: 10%">
+					<el-menu-item class="bd" index="4" style="top:2px; left: 200%; font-size: 18px"
+						onclick="openTable()">
+						<i class="el-icon-s-marketing"></i>
+						<el-link :underline="false" href="/ContainersGraph" target="_self"
+							style="top: -4px; left: 16px">
+							<font style="font-weight: bold" color="#000010" size=5px face='楷体' weight='bold'>详情统计
+							</font>
+						</el-link>
+					</el-menu-item>
+				</div>
+
+                <div id="menuPredict" style="position:absolute; left:49%;width: 10%">
+					<el-menu-item class="bd" index="5" style="top:2px; left: 200%; font-size: 18px"
+						onclick="openTable()">
+						<i class="el-icon-guide"></i>
+						<el-link :underline="false" href="/Prediction" target="_self"
+							style="top: -4px; left: 16px">
+							<font style="font-weight: bold" color="#000010" size=5px face='楷体' weight='bold'>数据预测
+							</font>
+						</el-link>
+					</el-menu-item>
+				</div>
+			</el-menu>
+		</div>
+
+		<!-- 两侧图表部分 -->
+		<div id="PortOperationAbility_radarGraph"></div>
+		<script type="text/javascript"
+			src="../static/js/Map/HY_Map/GraphsInTwoSides/PortOperationAbility_radarGraph.js"></script>
+
+		<div id="TrainExpectedAndActualPlan_graph"></div>
+		<script type="text/javascript"
+			src="../static/js/Map/HY_Map/GraphsInTwoSides/TrainExpectedAndActualPlan_graph.js"></script>
+
+		<div id="TrainNumInOut_graph"></div>
+		<script type="text/javascript" src="../static/js/Map/HY_Map/GraphsInTwoSides/TrainNumInOut_graph.js"></script>
+
+		<div id="TrainPartsTimeDistribution_graph"></div>
+		<script type="text/javascript"
+			src="../static/js/Map/HY_Map/GraphsInTwoSides/TrainPartsTimeDistribution_graph.js"></script>
+
+		<div id="BoxRetentionTimeChange_graph"></div>
+		<script type="text/javascript" src="../static/js/Map/HY_Map/GraphsInTwoSides/BoxRetentionTimeChange_graph.js">
+		</script>
+
+		<div id="BoxRetentionTimeDistribution_graph"></div>
+		<script type="text/javascript"
+			src="../static/js/Map/HY_Map/GraphsInTwoSides/BoxRetentionTimeDistribution_graph.js"></script>
+
+		<div id="BoxNumInOutChange_graph"></div>
+		<script type="text/javascript" src="../static/js/Map/HY_Map/GraphsInTwoSides/BoxNumInOutChange_graph.js">
+		</script>
+
+		<!-- Element UI ID: select -->
+		<div id="selectCtrl" class=".demo-title">
+			<!-- 			<div style="position: absolute; top: 27%; left: 5%; width: 30%">
+				<el-select v-model=" value_kind" placeholder="请选择货品种类" @change="GoodsKindChange">
+					<el-option v-for="item in options_kind" :key="item.value" :label="item.label" :value="item.value">
+					</el-option>
+				</el-select>
+			</div> -->
+			<!-- 			<el-select v-model="value_io" placeholder="请选择进口/出口" @change="IoChange">
+				<el-option v-for="item in options_io" :key="item.value" :label="item.label" :value="item.value">
+				</el-option>
+			</el-select> -->
+			<div style="position: absolute; top: 50%; left: 20%; width: 50%">
+				<el-date-picker v-model="value_time" type="daterange" range-separator="至" start-placeholder="开始日期"
+					end-placeholder="结束日期" value-format="yyyy-MM-dd" @change="DateChange">
+				</el-date-picker>
+			</div>
+			<div style="position: absolute; top: 10%; left: 24%; width: 50%">
+				<i class="el-icon-timer"
+					style="fontbackground-color: transparent; font-size: 160%; color: white; font-weight: bold">集装箱态势分析时间段</i>
+			</div>
+			<!-- 			<el-select v-model="value_dim" placeholder="请选择维度" @change="DimChange">
+				<el-option v-for="item in options_dim" :key="item.value" :label="item.label" :value="item.value">
+				</el-option>
+			</el-select> -->
+		</div>
+		<script type="text/javascript" src="../static/js/Map/HY_Map/Element UI/HY_selectInfo.js"></script>
+
+		<!-- <script type="text/javascript" src="{{ url_for('static', filename='js/map.js') }}"></script> -->
+		<script type="text/javascript" src="../static/js/Map/HY_Map/Element UI/HY_toplan.js"></script>
+
+		<!-- 部分图表数据更新函数 -->
+		<script type="text/javascript" src="../static/js/Map/HY_Map/HY_GraphDataCirculationFun.js"></script>
+		<!-- <script type="text/javascript" src="../static/js/Map/HY_Map/HY_MapInit.js"></script> -->
+	</body>
+</html>

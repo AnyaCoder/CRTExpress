@@ -1,0 +1,105 @@
+#select {
+	z-index: 2;
+	position: absolute;
+	width: 1200px;
+	height: 40px;
+	left: 200px;
+	bottom: 125px;
+}
+
+input.el-input__inner {
+	height: 40px;
+}
+
+#toplan {
+	z-index: 2;
+	position: absolute;
+	width: 1000px;
+	height: 10%;
+	left: 0px;
+	top: 0px;
+
+}
+
+.el-menu-demo {
+	left: 15%;
+	border-bottom-right-radius: 25px;
+	border-bottom-left-radius: 25px;
+}
+
+@keyframes gradientBG {
+	0% {
+		background-position: 0% 50%;
+	}
+
+	50% {
+		background-position: 100% 50%;
+		opacity: 0.7;
+	}
+
+	100% {
+		background-position: 0% 50%;
+	}
+}
+
+.el-switch {
+	width: 100px;
+}
+
+.el-switch__label--left {
+	position: absolute;
+	left: 35px;
+	color: #fff;
+	z-index: -1111;
+}
+
+.el-switch__core {
+	width: 100px !important;
+}
+
+.el-switch__label--right {
+	position: absolute;
+	right: 40px;
+	color: #fff;
+	z-index: -1111;
+}
+
+.el-switch__label--right.is-active {
+	z-index: 1111;
+	color: #fff !important;
+}
+
+.el-switch__label--left.is-active {
+	z-index: 1111;
+	color: #fff !important;
+}
+
+.el-icon-s-marketing:before {
+	width: 50px;
+	font-size: 40px;
+}
+
+.el-icon-s-marketing:after {
+	width: 50px;
+	font-size: 40px;
+}
+
+.el-icon-guide:before{
+	width: 50px;
+	font-size: 40px;
+}
+.el-icon-guide:after{
+	width: 50px;
+	font-size: 40px;
+}
+.od .el-icon-arrow-left {
+	left: 8px;
+	font-size: 30px;
+	position: relative;
+}
+
+.hy .el-icon-arrow-right {
+	left: -8px;
+	font-size: 30px;
+	position: relative;
+}

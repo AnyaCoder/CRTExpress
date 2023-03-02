@@ -1,0 +1,217 @@
+<!--
+ 配色板：
+ #002EA6 克莱因蓝
+ #FFE78F 拿坡里黄
+ 
+ #D7000F 中国红
+ #F1F2E5 鱼肚白
+ 
+ #FF770F 爱马仕橙
+ #000010 漆黑
+ 
+ #91B822 茶绿
+ #FFE76F 松花
+ 
+ #80D1CB 蒂芙尼蓝
+ #FFD4A9 浅驼色
+ 
+ #8BA583 莫兰迪绿
+ #CDA59E 莫兰迪粉
+ -->
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>OD分析</title>
+		<link rel="shortcut icon" href="../static/img/Favicon/OD.ico" />
+
+		<!-- 高德地图相关的 -->
+		<script src="https://webapi.amap.com/maps?v=1.4.15&key=93c37a776b049cdb0b88f7a46b2dee1c"></script>
+		<script src="https://webapi.amap.com/loader.js"></script>
+		<script src="https://webapi.amap.com/maps?v=2.0&key=93c37a776b049cdb0b88f7a46b2dee1c&plugin=AMap.CircleEditor">
+		</script>
+		<script type="text/javascript"
+			src="https://webapi.amap.com/maps?v=1.4.15&key=93c37a776b049cdb0b88f7a46b2dee1c&plugin=AMap.Geocoder">
+		</script>
+		<script
+			src="https://webapi.amap.com/maps?v=2.0&key=93c37a776b049cdb0b88f7a46b2dee1c&plugin=AMap.Scale,AMap.ToolBar">
+		</script>
+		<script src="https://webapi.amap.com/loca?v=2.0.0&key=93c37a776b049cdb0b88f7a46b2dee1c"></script>
+
+		<!-- 引入Element UI 相关组件的js、css文件 -->
+		<link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+		<script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+		<script src="https://unpkg.com/element-ui/lib/index.js"></script>
+
+
+		<!-- 引入实现图表功能的js文件 -->
+		<script src="../static/js/echarts.js"></script>
+		<script src="../static/js/jQuery.js"></script>
+		<script src="../static/js/globalVar/variable.js"></script>
+
+		<!-- 引入与图表主题相关的js文件 -->
+		<script src="../static/js/GraphTheme/dark.js"></script>
+		<!-- <script src="../static/js/GraphTheme/shine.js"></script> -->
+		<script src="../static/js/GraphTheme/purple-passion.js"></script>
+		<script src="../static/js/GraphTheme/chalk.js"></script>
+		<script src="../static/js/GraphTheme/macarons.js.js"></script>
+		<!-- <script src="../static/js/GraphTheme/westeros.js"></script> -->
+
+		<!-- 顶部导航栏的按钮 -->
+		<link rel="stylesheet" type="text/css" href="../static/css/element.css" />
+
+		<!-- 相关函数 -->
+		<script type="text/javascript" src="../static/js/Map/OD_Map/OD_DataOperationFun.js"></script>
+
+		<!-- 整个大屏的样式布局css文件 -->
+		<link rel="stylesheet" href="../static/css/Map/OD_Map.css" />
+
+		<!-- 其它 -->
+		<link rel="stylesheet" type="text/css" href="../static/css/drawer.css">
+		<style type="text/css">
+			* {
+				padding: 0;
+				margin: 0;
+			}
+
+			html,
+			body {
+				height: 100%;
+				overflow: hidden;
+			}
+		</style>
+
+	</head>
+
+	<body>
+		<link rel="stylesheet" type="text/css" href="../static/css/toplan.css" />
+		<!-- 下面是页面标题 -->
+		<div id="toplan">
+
+			<el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" @select="handleSelect" style="position: absolute; left:0px; width: 200%;
+				box-shadow: 0px 0px 10px 6px rgba(0,0,0,0.3);
+				background-image: linear-gradient(-45deg, #effcfa, #f2dfd2, #99cfdd, #f2a6a6, #c1a4cd, #8561a1);
+				background-size: 200% 200%;
+				animation: gradientBG 5s ease infinite;">
+				<el-menu-item index="1" style="left: 5%; font-size: 18px; width: 80px;">
+				</el-menu-item>
+				<div id="menuOD" style="position:absolute; left:2%; width: 5%; z-index: 3">
+					<el-menu-item class="od" index="2" onclick="showOD()"
+						style="top:2px;  font-size: 18px; width: 200px;border-bottom-left-radius:25px;border-top-left-radius:25px;">
+						<el-link :underline="false" href="/" target="_self" style="top: -4px;left:10px;">
+							<font style="font-weight: bold" color="#000010" size=5px face='楷体' weight='bold'>货运态势分析
+							</font>
+						</el-link>
+						<i class="el-icon-arrow-left"></i>
+					
+					</el-menu-item>
+				</div>
+				<div id="menuHY" style="position:absolute; left:12%;width: 5%; z-index: 2">
+					<el-menu-item class="hy" index="3" onclick="showHY()"
+						style="position:absolute; top:2px; font-size: 18px; width: 280px;border-bottom-right-radius:25px;border-top-right-radius:25px;">
+						<i class="el-icon-arrow-right"></i>
+						<el-link :underline="false" href="/HY" target="_self" style="top: -4px; left: -16px">
+							<font style="font-weight: bold" color="#000010" size=5px face='楷体' weight='bold'>班列集装箱态势分析
+							</font>
+						</el-link>
+					</el-menu-item>
+				</div>
+				<img src="../static/img/Logo/LOGOtrain.png" style="position:absolute; left: 24%; top: -50%" width="280"
+					height="110" alt="">
+				<img src="../static/img/Logo/CRexpress.png" style="position:absolute; left: 35%; top: -2%" width="450"
+					height="60" alt="">
+				<div id="menuTable" style="position:absolute; left:38%;width: 10%">
+					<el-menu-item class="bd" index="4" style="top:2px; left: 200%; font-size: 18px"
+						onclick="openTable()">
+						<i class="el-icon-s-marketing"></i>
+						<el-link :underline="false" href="/ContainersGraph" target="_self"
+							style="top: -4px; left: 16px">
+							<font style="font-weight: bold" color="#000010" size=5px face='楷体' weight='bold'>详情统计
+							</font>
+						</el-link>
+					</el-menu-item>
+				</div>
+
+                <div id="menuPredict" style="position:absolute; left:49%;width: 10%">
+					<el-menu-item class="bd" index="4" style="top:2px; left: 200%; font-size: 18px"
+						onclick="openTable()">
+						<i class="el-icon-guide"></i>
+						<el-link :underline="false" href="/Prediction" target="_self"
+							style="top: -4px; left: 16px">
+							<font style="font-weight: bold" color="#000010" size=5px face='楷体' weight='bold'>数据预测
+							</font>
+						</el-link>
+					</el-menu-item>
+				</div>
+			</el-menu>
+		</div>
+
+
+		<div id="Map" style="position:absolute; width: 3000px; height:100%;z-index: 1;"></div>
+		<div id="Map_Source"
+			style="border:2px solid #ffffff; background-color: #ffffff; position: absolute; width: 15%; height: 22%; top: 43%; left: 14%; z-index: 1;">
+		</div>
+		<div id="Map_Destination"
+			style="border:2px solid #ffffff; background-color: #ffffff; position: absolute; width: 12%; height: 22%; top: 43%; left: 1%; z-index: 1;">
+		</div>
+		<div id="selectCtrl">
+			<div style="position: absolute; left: 5%; bottom: 27%">
+				<el-select v-model="value_kind" placeholder="请选择货品种类" @change="GoodsKindChange">
+					<el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value">
+					</el-option>
+				</el-select>
+			</div>
+			<!-- 			<div style="position: absolute; left: 30%; bottom: 27%">
+				<el-select v-model="value_dim" placeholder="请选择维度" @change="DimChange">
+					<el-option v-for="item in options_dim" :key="item.value" :label="item.label" :value="item.value">
+					</el-option>
+				</el-select>
+			</div> -->
+			<div style="position: absolute; left: 41%; bottom: 27%">
+				<el-date-picker v-model="value_time" type="daterange" range-separator="至" start-placeholder="开始日期"
+					end-placeholder="结束日期" value-format="yyyy-MM-dd" @change="DateChange">
+				</el-date-picker>
+			</div>
+		</div>
+
+		<!-- 两侧图表部分 -->
+		<div id="TopGoodsValue_graph"></div>
+		<script type="text/javascript" src="../static/js/Map/OD_Map/GraphsInTwoSides/TopGoodsValue_graph.js"></script>
+
+		<div id="TopGoodsNumFlowChange_graph"></div>
+		<script type="text/javascript" src="../static/js/Map/OD_Map/GraphsInTwoSides/TopGoodsNumFlowChange_graph.js">
+		</script>
+
+		<div id="TopGoodsNumCities_graph"></div>
+		<script type="text/javascript" src="../static/js/Map/OD_Map/GraphsInTwoSides/TopGoodsNumCities_graph.js">
+		</script>
+
+		<div id="TopGoodsWeightCities_graph"></div>
+		<script type="text/javascript" src="../static/js/Map/OD_Map/GraphsInTwoSides/TopGoodsWeightCities_graph.js">
+		</script>
+
+		<div id="SorceOfSupplyGoodsNumChange_graph"></div>
+		<script type="text/javascript"
+			src="../static/js/Map/OD_Map/GraphsInTwoSides/SorceOfSupplyGoodsNumChange_graph.js"></script>
+
+		<div id="SorceOfSupplyGoodsWeightChange_graph"></div>
+		<script type="text/javascript"
+			src="../static/js/Map/OD_Map/GraphsInTwoSides/SorceOfSupplyGoodsWeightChange_graph.js"></script>
+
+		<div id="SourceOfSupplyGoodsValueDistribution_pieGraph"></div>
+		<script type="text/javascript"
+			src="../static/js/Map/OD_Map/GraphsInTwoSides/SourceOfSupplyGoodsValueDistribution_pieGraph.js"></script>
+
+		<div id="DestinationGoodsValueDistribution_pieGraph"></div>
+		<script type="text/javascript"
+			src="../static/js/Map/OD_Map/GraphsInTwoSides/DestinationGoodsValueDistribution_pieGraph.js"></script>
+
+		<script type="text/javascript" src="../static/js/Map/OD_Map/Element UI/OD_toplan.js"></script>
+		<script type="text/javascript" src="../static/js/Map/OD_Map/Element UI/OD_selectInfo.js"></script>
+		<script type="text/javascript" src="../static/js/Map/OD_Map/OD_GraphDataCirculationFun.js"></script>
+		<script type="text/javascript" src="../static/js/Map/OD_Map/OD_GraphDataInit.js"></script>
+		<script type="text/javascript" src="../static/js/Map/OD_Map/OD_MapInit.js"></script>
+	</body>
+</html>

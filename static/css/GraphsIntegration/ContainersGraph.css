@@ -1,0 +1,168 @@
+#title {
+	position: absolute;
+	width: 85%;
+	height: 5%;
+	top: 0;
+	left: 15%;
+	/* background-color: white; */
+	text-align: center;
+	color: #545c64;
+	font-size: 200%;
+	font-family: "楷体";
+	font-weight: bold;
+	border-bottom-left-radius: 30%;
+	border-bottom-right-radius: 30%;
+	box-shadow: 6px 6px 1px #888888;
+
+	z-index: 1;
+
+	background: #FFEFBA;
+	/* fallback for old browsers */
+	background: -webkit-linear-gradient(to left, #FFFFFF, #FFEFBA);
+	/* Chrome 10-25, Safari 5.1-6 */
+	background: linear-gradient(to left, #FFFFFF, #FFEFBA);
+	/* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+
+
+	/* animation: gradientBG 5s ease infinite; */
+}
+
+@keyframes gradientBG {
+	0% {
+		background-position: 0% 50%;
+		color: #ffe78f;
+	}
+
+	50% {
+		background-position: 100% 50%;
+		opacity: 0.75;
+		color: #fced7c;
+	}
+
+	100% {
+		background-position: 50% 0%;
+		color: #ffe78f;
+	}
+}
+
+@keyframes gradientBodyBG {
+	0% {
+		background-color: #ADA996;
+	}
+
+	50% {
+		/* background-image: radial-gradient(#E9CCD3 60%, #C08EAF); */
+		background-color: #F2F2F2;
+	}
+
+	100% {
+		background-color: #ADA996;
+	}
+}
+
+#bodyPart {
+	/* animation: gradientBodyBG 5s ease infinite; */
+	background-color: #fbfbf1;
+}
+
+#navigationBar_title {
+	position: absolute;
+	width: 14.5%;
+	height: 4.2%;
+	left: 0;
+	top: 0;
+	background: #f4e6cf;
+	border: 3px solid #b47f47;
+	text-align: center;
+	font-size: 32px;
+	font-weight: bold;
+	font-family: "楷体";
+}
+
+#navigationBar {
+	position: absolute;
+	width: 15%;
+	height: 102.5%;
+	left: 0;
+	top: 5%;
+	background-color: white;
+	/* text-align: center; */
+	font-size: 25px;
+	font-family: "微软雅黑";
+	overflow: auto;
+
+	box-shadow: 6px 6px 3px #ADA996;
+
+	/* background-image: linear-gradient(#DE3F7C, #EA517F, #EC7696); */
+}
+
+@keyframes imgChange {
+	0% {
+		opacity: 1;
+	}
+
+	50% {
+		opacity: 0.7;
+	}
+
+	100% {
+		opacity: 1;
+	}
+}
+
+#Box_graph {
+	position: absolute;
+	width: 83%;
+	height: 47.5%;
+	left: 16%;
+	top: 6%;
+	background-color: white;
+	border-radius: 20px;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
+	background-image: radial-gradient(rgba(246, 231, 197, 0) 40%, rgba(246, 231, 197, 0.8));
+}
+
+#timedist_graph {
+	position: absolute;
+	width: 41%;
+	height: 47.5%;
+	left: 58%;
+	top: 55%;
+	background-color: white;
+	border-radius: 20px;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
+	background-image: radial-gradient(rgba(246, 231, 197, 0) 40%, rgba(246, 231, 197, 0.8));
+}
+
+#timespan_graph {
+	position: absolute;
+	width: 41%;
+	height: 47.5%;
+	left: 16%;
+	top: 55%;
+	background-color: white;
+	border-radius: 20px;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
+	background-image: radial-gradient(rgba(246, 231, 197, 0) 40%, rgba(246, 231, 197, 0.8));
+}
+
+#blankSpace {
+	position: absolute;
+	width: 85%;
+	height: 3%;
+	top: 104.5%;
+	left: 15%;
+	/* background-color: #ffffff; */
+	border-top-left-radius: 40%;
+	border-top-right-radius: 40%;
+
+	background: #FFEFBA;
+	/* fallback for old browsers */
+	background: -webkit-linear-gradient(to right, #FFFFFF, #FFEFBA);
+	/* Chrome 10-25, Safari 5.1-6 */
+	background: linear-gradient(to right, #FFFFFF, #FFEFBA);
+	/* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+	/* animation: gradientBG 5s ease infinite; */
+}

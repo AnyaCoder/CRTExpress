@@ -1,0 +1,241 @@
+<!--
+ 经纬度转换网站:
+ http://maplocation.sjfkai.com/
+ -->
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>班列情况分析</title>
+		<link rel="shortcut icon" href="../../static/img/Favicon/StatisticAnalysis.ico" />
+		<link rel="stylesheet" href="../../static/css/GraphsIntegration/TrainSituationAnalysis.css" />
+
+
+		<script type="text/javascript" src="../../static/js/jQuery.js"></script>
+		<script type="text/javascript" src="../../static/js/echarts.js"></script>
+		<link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+		<script src="https://unpkg.com/element-ui/lib/index.js"></script>
+
+	</head>
+	<body id="bodyPart">
+		<div id="title">班列情况分析</div>
+		<!-- 导航栏部分 -->
+		<div id="navigationBar_title">
+			导航栏
+		</div>
+		<div id="navigationBar">
+			<el-aside id="menu" style="position:absolute;height: 100%;z-index:2;width: 100%;">
+				<el-row class="tac" style="height: 100%;width: 100%;">
+					<el-col :span="12" style="height: 100%;width: 100%;">
+						<el-menu style="height: 100%;" class="el-menu-vertical-demo" @open="handleClose"
+							active-text-color='' @close="handleClose" :default-openeds="openeds"
+							background-color="#f4e6cf">
+							<el-submenu index="1">
+								<div slot="title">
+									<i class="el-icon-location"></i>
+									<span>
+										<font style="font-weight: bold; font-style: italic" color="#0b0b0a" size=4%>
+											态势分析大屏
+										</font>
+									</span>
+								</div>
+								<el-menu-item index="1-1">
+									<el-link :underline="false" href="/" target="_self" icon="el-icon-s-promotion">
+										<font style="font-weight: bold;" color="#545c64" size=3%>货运态势分析</font>
+									</el-link>
+								</el-menu-item>
+								<el-menu-item index="1-2">
+									<el-link :underline="false" href="/HY" target="_self" icon="el-icon-truck">
+										<font style="font-weight: bold;" color="#545c64" size=3%>班列集装箱态势分析</font>
+									</el-link>
+								</el-menu-item>
+							</el-submenu>
+							<el-submenu index="2">
+								<div slot="title">
+									<i class="el-icon-menu"></i>
+									<span>
+										<font style="font-weight: bold; font-style: italic" color="#0b0b0a" size=4%>
+											详情统计
+										</font>
+									</span>
+								</div>
+								<el-menu-item index="2-1">
+									<el-link :underline="false" href="/ContainersGraph" target="_self"
+										icon="el-icon-s-data">
+										<font style="font-weight: bold;" color="#545c64" size=3%>集装箱部分</font>
+									</el-link>
+								</el-menu-item>
+								<el-menu-item indexd="2-2">
+									<div
+										style="position: absolute; left: 0; width: 100%; height: 100%; background-color: #ffffff;">
+									</div>
+									<el-link :underline="false" href="/TrainSituationAnalysis" target="_self"
+										icon="el-icon-s-data">
+										<font style="font-weight: bold;" color="#015467" size=4%>班列情况分析</font>
+									</el-link>
+								</el-menu-item>
+								<el-menu-item indexd="2-3">
+									<el-link :underline="false" href="/PortOperationAbilityAnalysis" target="_self"
+										icon="el-icon-s-data">
+										<font style="font-weight: bold;" color="#545c64" size=3%>口岸/站点作业能力分析</font>
+									</el-link>
+								</el-menu-item>
+								<el-menu-item indexd="2-4">
+									<el-link :underline="false" href="/GoodsGraph" target="_self" icon="el-icon-s-data">
+										<font style="font-weight: bold;" color="#545c64" size=3%>货物部分</font>
+									</el-link>
+								</el-menu-item>
+							</el-submenu>
+							<el-submenu index="3">
+								<div slot="title">
+									<i class="el-icon-view"></i>
+									<span>
+										<font style="font-weight: bold; font-style: italic" color="#0b0b0a" size=4%>
+											风采展示
+										</font>
+									</span>
+								</div>
+								<el-menu-item index="3-1">
+									<el-link :underline="false" href="/MenuCover" target="_self"
+										icon="el-icon-s-platform">
+										<font style="font-weight: bold;" color="#545c64" size=3%>班列掠影</font>
+									</el-link>
+								</el-menu-item>
+						</el-menu>
+					</el-col>
+				</el-row>
+			</el-aside>
+		</div>
+		<script>
+			var menu = new Vue({
+				el: "#menu",
+				data() {
+					return {
+						openeds: ['1', '2', '3'],
+						uniqueOpened: false
+					}
+				},
+				methods: {
+					handleOpen(key, keyPath) {
+						console.log(key, keyPath);
+					},
+					handleClose(key, keyPath) {
+						console.log(key, keyPath);
+					},
+
+				}
+			})
+		</script>
+		<div id="traininfo_graph">
+			<div id="traininfo-container" style="width: 100%; height: 85%; display: inline-block"></div>
+
+			<div id="traininfo_graph_ctrl"
+				style="position: relative; text-align: center; width: 80%; height: 20%; display: flex; margin: 0; padding: 0">
+				<template>
+					<div id="div-select"
+						style="position: absolute; left: 1%; top: 10%; text-align: center; width: 25%; height: 25%; display: inline;">
+						<el-select v-model="valueSelect" @change="changeValue" placeholder="请选择口岸">
+							<el-option v-for="item in options" :key="item.value" :label="item.label"
+								:value="item.value">
+							</el-option>
+						</el-select>
+					</div>
+					<div id="div-datepicker"
+						style="position: absolute; left: 30%; top: 10%; text-align: center; width: 25%; height: 25%; display: inline;">
+						<el-date-picker v-model="valueDate" format="yyyy-MM-dd" value-format="yyyy-MM-dd"
+							type="daterange" range-separator="至" start-placeholder="开始日期" end-placeholder="结束日期"
+							@change="changeValue">
+						</el-date-picker>
+					</div>
+					<div class="div-slider"
+						style="position: absolute; left: 98%; top: 5%; text-align: center; width: 15%; height: 25%; display: inline;">
+						<el-slider v-model="interval" :step="50" :marks="intervalMarks" @change="changeValue" show-stops
+							:format-tooltip="sliderFormat">
+						</el-slider>
+					</div>
+				</template>
+			</div>
+		</div>
+		<div id="traintime_graph">
+			<div id="traintime-container" style="width: 100%; height: 85%; display: inline-block"></div>
+
+			<div id="traintime_graph_ctrl" style="width: 80%%; height: 80%; display: inline-block">
+				<template>
+					<div id="div-select" style="position: absolute; left: 2%; top: 88%; height: 25%;">
+						<el-select v-model="valueSelect" @change="changeValue" placeholder="请选择口岸">
+							<el-option v-for="item in options" :key="item.value" :label="item.label"
+								:value="item.value">
+							</el-option>
+						</el-select>
+					</div>
+					<div id="div-datepicker" style="position: absolute; left: 35%; top: 88%; height: 25%;">
+						<el-date-picker v-model="valueDate" format="yyyy-MM-dd" value-format="yyyy-MM-dd"
+							type="daterange" range-separator="至" start-placeholder="开始日期" end-placeholder="结束日期"
+							@change="changeValue">
+						</el-date-picker>
+					</div>
+				</template>
+			</div>
+		</div>
+		<div id="trainplan_graph">
+			<div id="trainplan-container" style="width: 100%; height: 85%; display: inline-block"></div>
+
+			<div id="trainplan_graph_ctrl"
+				style="position: relative; text-align: center; width: 80%; height: 20%; display: flex; margin: 0; padding: 0">
+				<template>
+					<div id="div-select-dep"
+						style="position: absolute; left: 2%; top: 5%; text-align: center; width: 15%; height: 25%; display: inline;">
+						<el-select v-model="valueSelect" @change="changeValue" placeholder="请选择发站">
+							<el-option v-for="item in options" :key="item.value" :label="item.label"
+								:value="item.value">
+							</el-option>
+						</el-select>
+					</div>
+					<div id="div-select-des"
+						style="position: absolute; left: 20%; top: 5%; text-align: center; width: 15%; height: 25%; display: inline;">
+						<el-select v-model="valueSelect2" @change="changeValue" placeholder="请选择到站">
+							<el-option v-for="item in options2" :key="item.value" :label="item.label"
+								:value="item.value">
+							</el-option>
+						</el-select>
+					</div>
+					<div id="div-datepicker"
+						style="position: absolute; left: 40%; top: 5%; text-align: center; width: 25%; height: 25%; display: inline;">
+						<el-date-picker v-model="valueDate" format="yyyy-MM-dd" value-format="yyyy-MM-dd"
+							type="daterange" range-separator="至" start-placeholder="开始日期" end-placeholder="结束日期"
+							@change="changeValue">
+						</el-date-picker>
+					</div>
+					<div class="div-slider"
+						style="position: absolute; left: 75%; top: 1%; text-align: center; width: 15%; height: 25%; display: inline;">
+						<el-slider v-model="interval" :step="50" :marks="intervalMarks" @change="changeValue" show-stops
+							:format-tooltip="sliderFormat">
+						</el-slider>
+					</div>
+				</template>
+			</div>
+		</div>
+		<script type="text/javascript" src="../../static/js/StatisticalCharts/ctrl_traininfo/ctrl_traininfo.js">
+		</script>
+		<script type="text/javascript"
+			src="../../static/js/StatisticalCharts/ctrl_traininfo/traininfo_graph_dataInit.js">
+		</script>
+		<script type="text/javascript"
+			src="../../static/js/StatisticalCharts/ctrl_traininfo/ctrl_traininfo_elements.js"></script>
+		<script type="text/javascript" src="../../static/js/StatisticalCharts/ctrl_traintime/ctrl_traintime.js">
+		</script>
+		<script type="text/javascript"
+			src="../../static/js/StatisticalCharts/ctrl_traintime/traintime_graph_dataInit.js">
+		</script>
+		<script type="text/javascript"
+			src="../../static/js/StatisticalCharts/ctrl_traintime/ctrl_traintime_elements.js"></script>
+		<script type="text/javascript" src="../../static/js/StatisticalCharts/ctrl_trainplan/ctrl_trainplan.js">
+		</script>
+		<script type="text/javascript"
+			src="../../static/js/StatisticalCharts/ctrl_trainplan/trainplan_graph_dataInit.js">
+		</script>
+		<script type="text/javascript"
+			src="../../static/js/StatisticalCharts/ctrl_trainplan/ctrl_trainplan_elements.js"></script>
+	</body>
+</html>
