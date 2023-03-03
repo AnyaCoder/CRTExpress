@@ -33,6 +33,105 @@ def Prediction():
     return render_template('YC.html')
 
 
+
+@app.route('/P1_DaliyLifeGoods_data', methods=['GET', 'POST'])
+def P1_DaliyLifeGoods_data():
+    """
+
+    :return:
+    """
+
+    res = {"time": ['2021-12-12', '2021-12-13', '2021-12-14', '2021-12-15', '2021-12-16', '2021-12-17', '2021-12-18'],
+           "nums": [123, 456, 789, 322, 533, 666, 500],
+           "weights": [233, 444, 566, 322, 533, 666, 555]
+           }
+    return jsonify(res)
+
+
+@app.route('/P1_FoodsGoods_data', methods=['GET', 'POST'])
+def P1_FoodsGoods_data():
+    """
+
+    :return:
+    """
+
+    res = {"time": ['2021-12-12', '2021-12-13', '2021-12-14', '2021-12-15', '2021-12-16', '2021-12-17', '2021-12-18'],
+           "nums": [123, 456, 789, 322, 533, 666, 500],
+           "weights": [233, 444, 566, 322, 533, 666, 555]
+           }
+    return jsonify(res)
+
+
+@app.route('/P1_ClothesGoods_data', methods=['GET', 'POST'])
+def P1_ClothesGoods_data():
+    """
+
+    :return:
+    """
+
+    res = {"time": ['2021-12-12', '2021-12-13', '2021-12-14', '2021-12-15', '2021-12-16', '2021-12-17', '2021-12-18'],
+           "nums": [123, 456, 789, 322, 533, 666, 500],
+           "weights": [233, 444, 566, 322, 533, 666, 555]
+           }
+    return jsonify(res)
+
+
+@app.route('/P1_DrawGoods_data', methods=['GET', 'POST'])
+def P1_DrawGoods_data():
+    """
+
+    :return:
+    """
+
+    res = {"time": ['2021-12-12', '2021-12-13', '2021-12-14', '2021-12-15', '2021-12-16', '2021-12-17', '2021-12-18'],
+           "nums": [123, 456, 789, 322, 533, 666, 500],
+           "weights": [233, 444, 566, 322, 533, 666, 555]
+           }
+    return jsonify(res)
+
+
+@app.route('/P1_OthersGoods_data', methods=['GET', 'POST'])
+def P1_OthersGoods_data():
+    """
+
+    :return:
+    """
+
+    res = {"time": ['2021-12-12', '2021-12-13', '2021-12-14', '2021-12-15', '2021-12-16', '2021-12-17', '2021-12-18'],
+           "nums": [123, 456, 789, 322, 533, 666, 500],
+           "weights": [233, 444, 566, 322, 533, 666, 555]
+           }
+    return jsonify(res)
+
+
+@app.route('/P1_WeaponsGoods_data', methods=['GET', 'POST'])
+def P1_WeaponsGoods_data():
+    """
+
+    :return:
+    """
+
+    res = {"time": ['2021-12-12', '2021-12-13', '2021-12-14', '2021-12-15', '2021-12-16', '2021-12-17', '2021-12-18'],
+           "nums": [123, 456, 789, 322, 533, 666, 500],
+           "weights": [233, 444, 566, 322, 533, 666, 555]
+           }
+    return jsonify(res)
+
+
+@app.route('/P1_MetalGoods_data', methods=['GET', 'POST'])
+def P1_MetalGoods_data():
+    """
+
+    :return:
+    """
+
+    res = {"time": ['2021-12-12', '2021-12-13', '2021-12-14', '2021-12-15', '2021-12-16', '2021-12-17', '2021-12-18'],
+           "nums": [123, 456, 789, 322, 533, 666, 500],
+           "weights": [233, 444, 566, 322, 533, 666, 555]
+           }
+    return jsonify(res)
+
+
 @app.route('/ContainersGraph')
 def ContainersGraph():
     return render_template('GraphsIntegration/ContainersGraph.html')

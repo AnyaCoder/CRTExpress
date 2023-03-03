@@ -7,7 +7,7 @@
     for (var i = 0; i < Time.length; i++) {
         newData.push([Time[i], Data[i]]);
     }
-    var RightBottomGraph = echarts.init(document.getElementById('RightBottomGraph'));
+    var RightBottomGraph = echarts.init(document.getElementById('RightBottomGraph'), 'dark');
     const chartContainer4 = document.getElementById('RightBottomGraph');
 
     // 创建一个 div 元素作为背景层
@@ -25,7 +25,7 @@
     chartContainer4.insertBefore(bgDiv4, chartContainer4.firstChild);
 
     RightBottomGraph.setOption({
-
+        backgroundColor: 'transparent',
         graphic: {
             type: 'group',
             children: [
@@ -46,7 +46,7 @@
             ]
         },
         title: {
-            text: '货物分布',
+            text: '武器火药',
             textStyle: {
                 color: '#72aff3',
                 // fontStyle: 'oblique',
@@ -55,33 +55,80 @@
             },
         },
         tooltip: {
-            trigger: 'axis',
-            axisPointer: {
-                type: 'cross'
+        trigger: 'axis',
+        axisPointer: {
+            type: 'cross'
+        }
+    },
+
+
+    xAxis: {
+        type: 'time',
+        data: Time,
+        axisLabel: {
+            textStyle: {
+                fontSize: 12,
+                color: '#72aff3'
             }
         },
-
+        axisLine: {
+            lineStyle: {
+                color: '#666' // 指定坐标轴轴线颜色
+            }
+        },
+        axisTick: {
+            lineStyle: {
+                color: '#666' // 指定坐标轴刻度线颜色
+            }
+        },
+    },
+    yAxis: {
+        type: 'value',
+        splitLine: {
+            lineStyle: {
+                opacity: 0.3, // 设置透明度为 0.3
+                type: 'dashed'
+            }
+        },
         axisLabel: {
-            fontSize: 12,
-            color: '#72aff3'
+            textStyle: {
+                fontSize: 12,
+                color: '#72aff3'
+            }
         },
-        xAxis: {
-            type: 'time',
-            data: Time,
+        axisLine: {
+            lineStyle: {
+                color: '#666' // 指定坐标轴轴线颜色
+            }
         },
-        yAxis: {
-            type: 'value',
-            splitLine: {
-                lineStyle: {
-                    opacity: 0.3, // 设置透明度为 0.3
-                    type: 'dashed'
-                }
-            },
-            show: true
+        axisTick: {
+            lineStyle: {
+                color: '#666' // 指定坐标轴刻度线颜色
+            }
         },
-        series: [{
+        show: true
+    },
+    series: [
+        {
+            name: '数量',
+            type: 'line',
+            color: '#3396ef',
             data: newData,
-            type: 'line'
-        }]
+            smooth: true
+        },
+        {
+            name: '重量',
+            color: '#afd7ec',
+            type: 'line',
+            data: newData,
+            smooth: true
+        }
+    ],
+    legend: {
+        show: true,
+        data: [{name: '数量', textStyle: {color: '#3396ef', fontFamily: '楷体', fontSize: 20}},
+            {name: '重量', textStyle: {color: '#afd7ec', fontFamily: '楷体', fontSize: 20}}],
+
+    },
     });
     RightBottomGraph.render;
