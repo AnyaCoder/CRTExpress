@@ -28,109 +28,79 @@ def MenuCover():
     return render_template('GraphsIntegration/Start.html')
 
 
+# ----------------------------------------------------------
 @app.route('/Prediction')
 def Prediction():
     return render_template('YC.html')
 
 
-
-@app.route('/P1_DaliyLifeGoods_data', methods=['GET', 'POST'])
-def P1_DaliyLifeGoods_data():
-    """
-
-    :return:
-    """
-
+def random_init_data():
     res = {"time": ['2021-12-12', '2021-12-13', '2021-12-14', '2021-12-15', '2021-12-16', '2021-12-17', '2021-12-18'],
            "nums": [123, 456, 789, 322, 533, 666, 500],
            "weights": [233, 444, 566, 322, 533, 666, 555]
            }
     return jsonify(res)
+
+
+@app.route('/P1_DaliyLifeGoods_data', methods=['GET', 'POST'])
+def P1_DaliyLifeGoods_data():
+    return random_init_data()
 
 
 @app.route('/P1_FoodsGoods_data', methods=['GET', 'POST'])
 def P1_FoodsGoods_data():
-    """
-
-    :return:
-    """
-
-    res = {"time": ['2021-12-12', '2021-12-13', '2021-12-14', '2021-12-15', '2021-12-16', '2021-12-17', '2021-12-18'],
-           "nums": [123, 456, 789, 322, 533, 666, 500],
-           "weights": [233, 444, 566, 322, 533, 666, 555]
-           }
-    return jsonify(res)
+    return random_init_data()
 
 
 @app.route('/P1_ClothesGoods_data', methods=['GET', 'POST'])
 def P1_ClothesGoods_data():
-    """
-
-    :return:
-    """
-
-    res = {"time": ['2021-12-12', '2021-12-13', '2021-12-14', '2021-12-15', '2021-12-16', '2021-12-17', '2021-12-18'],
-           "nums": [123, 456, 789, 322, 533, 666, 500],
-           "weights": [233, 444, 566, 322, 533, 666, 555]
-           }
-    return jsonify(res)
+    return random_init_data()
 
 
 @app.route('/P1_DrawGoods_data', methods=['GET', 'POST'])
 def P1_DrawGoods_data():
-    """
-
-    :return:
-    """
-
-    res = {"time": ['2021-12-12', '2021-12-13', '2021-12-14', '2021-12-15', '2021-12-16', '2021-12-17', '2021-12-18'],
-           "nums": [123, 456, 789, 322, 533, 666, 500],
-           "weights": [233, 444, 566, 322, 533, 666, 555]
-           }
-    return jsonify(res)
+    return random_init_data()
 
 
 @app.route('/P1_OthersGoods_data', methods=['GET', 'POST'])
 def P1_OthersGoods_data():
-    """
-
-    :return:
-    """
-
-    res = {"time": ['2021-12-12', '2021-12-13', '2021-12-14', '2021-12-15', '2021-12-16', '2021-12-17', '2021-12-18'],
-           "nums": [123, 456, 789, 322, 533, 666, 500],
-           "weights": [233, 444, 566, 322, 533, 666, 555]
-           }
-    return jsonify(res)
+    return random_init_data()
 
 
 @app.route('/P1_WeaponsGoods_data', methods=['GET', 'POST'])
 def P1_WeaponsGoods_data():
-    """
-
-    :return:
-    """
-
-    res = {"time": ['2021-12-12', '2021-12-13', '2021-12-14', '2021-12-15', '2021-12-16', '2021-12-17', '2021-12-18'],
-           "nums": [123, 456, 789, 322, 533, 666, 500],
-           "weights": [233, 444, 566, 322, 533, 666, 555]
-           }
-    return jsonify(res)
+    return random_init_data()
 
 
-@app.route('/P1_MetalGoods_data', methods=['GET', 'POST'])
+@app.route('/P2_MetalGoods_data', methods=['GET', 'POST'])
 def P1_MetalGoods_data():
-    """
+    return random_init_data()
 
-    :return:
-    """
 
-    res = {"time": ['2021-12-12', '2021-12-13', '2021-12-14', '2021-12-15', '2021-12-16', '2021-12-17', '2021-12-18'],
-           "nums": [123, 456, 789, 322, 533, 666, 500],
-           "weights": [233, 444, 566, 322, 533, 666, 555]
-           }
-    return jsonify(res)
+@app.route('/P2_ChemicalGoods_data', methods=['GET', 'POST'])
+def P2_ChemicalGoods_data():
+    return random_init_data()
 
+
+@app.route('/P2_MaterialGoods_data', methods=['GET', 'POST'])
+def P2_MaterialGoods_data():
+    return random_init_data()
+
+
+@app.route('/P2_ElectronicGoods_data', methods=['GET', 'POST'])
+def P2_ElectronicGoods_data():
+    return random_init_data()
+
+
+@app.route('/P2_TransportGoods_data', methods=['GET', 'POST'])
+def P2_TransportGoods_data():
+    return random_init_data()
+
+
+@app.route('/P2_MineGoods_data', methods=['GET', 'POST'])
+def P2_MineGoods_data():
+    return random_init_data()
+# ----------------------------------------------------------
 
 @app.route('/ContainersGraph')
 def ContainersGraph():

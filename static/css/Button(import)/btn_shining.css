@@ -23,6 +23,8 @@ a {
 }
 
 .btn {
+  cursor: pointer;
+  user-select: none;
   text-decoration: none;
   border: 1px solid rgb(146, 148, 248);
   position: relative;

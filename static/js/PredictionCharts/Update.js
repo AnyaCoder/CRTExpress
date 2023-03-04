@@ -1,4 +1,6 @@
 
+now_page = 1;
+
 function Data_init(URL, which) {
 
     $.post(URL).done(function (data) {

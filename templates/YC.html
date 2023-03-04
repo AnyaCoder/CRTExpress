@@ -10,14 +10,6 @@
     <!-- 高德地图相关的 -->
     <script src="https://webapi.amap.com/maps?v=1.4.15&key=93c37a776b049cdb0b88f7a46b2dee1c"></script>
     <script src="https://webapi.amap.com/loader.js"></script>
-    <script src="https://webapi.amap.com/maps?v=2.0&key=93c37a776b049cdb0b88f7a46b2dee1c&plugin=AMap.CircleEditor">
-    </script>
-    <script type="text/javascript"
-            src="https://webapi.amap.com/maps?v=1.4.15&key=93c37a776b049cdb0b88f7a46b2dee1c&plugin=AMap.Geocoder">
-    </script>
-    <script
-            src="https://webapi.amap.com/maps?v=2.0&key=93c37a776b049cdb0b88f7a46b2dee1c&plugin=AMap.Scale,AMap.ToolBar">
-    </script>
     <script src="https://webapi.amap.com/loca?v=2.0.0&key=93c37a776b049cdb0b88f7a46b2dee1c"></script>
 
     <!-- 引入Element UI 相关组件的js、css文件 -->
@@ -29,24 +21,14 @@
     <!-- 引入实现图表功能的js文件 -->
     <script src="../static/js/echarts.js"></script>
     <script src="../static/js/jQuery.js"></script>
-    <script src="../static/js/globalVar/variable.js"></script>
 
     <!-- 引入与图表主题相关的js文件 -->
     <script src="../static/js/GraphTheme/dark.js"></script>
-    <!-- <script src="../static/js/GraphTheme/shine.js"></script> -->
-    <script src="../static/js/GraphTheme/purple-passion.js"></script>
     <script src="../static/js/GraphTheme/chalk.js"></script>
-    <script src="../static/js/GraphTheme/macarons.js.js"></script>
-    <!-- <script src="../static/js/GraphTheme/westeros.js"></script> -->
 
     <!-- 顶部导航栏的按钮 -->
     <link rel="stylesheet" type="text/css" href="../static/css/element.css"/>
 
-    <!-- 相关函数 -->
-    <script type="text/javascript" src="../static/js/Map/OD_Map/OD_DataOperationFun.js"></script>
-
-    <!-- 整个大屏的样式布局css文件 -->
-    <link rel="stylesheet" href="../static/css/Map/OD_Map.css"/>
 
     <!-- 其它 -->
     <link rel="stylesheet" type="text/css" href="../static/css/drawer.css">
@@ -150,60 +132,45 @@
 </script>
 
 <div id="Map" style="position:absolute; width: 3000px; height:100%;z-index: 1; background-color: #252121;"></div>
+
+
 <script>// 地图初始化
-
-
 var map = new AMap.Map('Map', {
-    zoom: 3.0,
+    zoom: 4.0,
     // 地图初始化的位置
-    center: [55.000923, 52.675807],
+    center: [75.000923, 45.675807],
     showLabel: false,
     viewMode: '3D',
     mapStyle: 'amap://styles/darkblue',
 });
-
 </script>
 
 <script src="../static/js/PredictionCharts/Update.js"></script>
 
 <div id="LeftTopGraph" style="width: 30%; height: 45%;z-index: 3;position: absolute;left: 1%;top:10%;"></div>
 <script src="../static/Page_1/lefttop.js"></script>
-<script>
-    Data_init('/P1_DaliyLifeGoods_data', LeftTopGraph);
-</script>
-
 
 <div id="RightTopGraph" style="width: 30%; height: 45%;z-index: 3;position: absolute;right: 1%;top:10%;"></div>
 <script src="../static/Page_1/righttop.js"></script>
-<script>
-    Data_init('/P1_ClothesGoods_data', RightTopGraph);
-</script>
 
 <div id="LeftBottomGraph" style="width: 30%; height: 45%;z-index: 3;position: absolute;left:1%;bottom:-3%;"></div>
 <script src="../static/Page_1/leftbottom.js"></script>
-<script>
-    Data_init("/P1_DrawGoods_data", LeftBottomGraph);
-</script>
 
 <div id="RightBottomGraph" style="width: 30%; height: 45%;z-index: 3;position: absolute;right:1%;bottom:-3%;"></div>
 <script src="../static/Page_1/rightbottom.js"></script>
-<script>
-    Data_init("/P1_WeaponsGoods_data", RightBottomGraph);
-</script>
 
-<div id="MidTopGraph" style="width: 30%; height: 45%;z-index: 3;position: absolute;left:34%;top: 10%;"></div>
+<div id="MidTopGraph" style="width: 30%; height: 45%;z-index: 3;position: absolute;left:35%;top: 10%;"></div>
 <script src="../static/Page_1/midtop.js"></script>
-<script>
-    Data_init("/P1_FoodsGoods_data", MidTopGraph);
-</script>
 
-<div id="MidBottomGraph" style="width: 30%; height: 45%;z-index: 3;position: absolute;left:34%;bottom:-3%"></div>
+<div id="MidBottomGraph" style="width: 30%; height: 45%;z-index: 3;position: absolute;left:35%;bottom:-3%"></div>
 <script src="../static/Page_1/midbottom.js"></script>
+
+<script src="../static/js/PredictionCharts/onclick_change_page.js"></script>
 <script>
-    Data_init("/P1_OthersGoods_data", MidBottomGraph);
+    now_page = 2;
+    change_page(); // 初始化
 </script>
 
-<script src="../static/Page_1/onclick_change_page.js"></script>
 <div id="button-shining" style="z-index: 4; position: absolute; left: 45%; top: 52%;">
     <div class="container">
          <a class="btn" onclick="change_page()" style="font-family: 楷体">切换到下一页</a>
