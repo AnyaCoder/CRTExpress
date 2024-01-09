@@ -7,24 +7,24 @@ var newData = [];
 for (var i = 0; i < Time.length; i++) {
     newData.push([Time[i], Data[i]]);
 }
-var MidBottomGraph = echarts.init(document.getElementById('MidBottomGraph'), 'dark');
-const chartContainer6 = document.getElementById('MidBottomGraph');
+var RightTopGraph = echarts.init(document.getElementById('RightTopGraph'), 'dark');
+const chartContainer2 = document.getElementById('RightTopGraph');
 
 // 创建一个 div 元素作为背景层
-const bgDiv6 = document.createElement('div');
-bgDiv6.style.position = 'absolute';
-bgDiv6.style.width = '100%';
-bgDiv6.style.height = '100%';
-bgDiv6.style.backgroundImage = 'url(../static/img/ScientificBackground.jpeg)';
-bgDiv6.style.backgroundSize = 'cover';
-bgDiv6.style.opacity = 0.3; // 设置透明度
-bgDiv6.style.filter = 'blur(10px)'; // 设置高斯模糊程度
-bgDiv6.style.zIndex = -1; // 设置 z-index 属性，将背景层放在 echarts 图表下面
+const bgDiv2 = document.createElement('div');
+bgDiv2.style.position = 'absolute';
+bgDiv2.style.width = '100%';
+bgDiv2.style.height = '100%';
+bgDiv2.style.backgroundImage = 'url(../static/img/ScientificBackground.jpeg)';
+bgDiv2.style.backgroundSize = 'cover';
+bgDiv2.style.opacity = 0.3; // 设置透明度
+bgDiv2.style.filter = 'blur(10px)'; // 设置高斯模糊程度
+bgDiv2.style.zIndex = -1; // 设置 z-index 属性，将背景层放在 echarts 图表下面
 
 // 将背景层插入到 echarts 图表所在的 div 中
-chartContainer6.insertBefore(bgDiv6, chartContainer6.firstChild);
+chartContainer2.insertBefore(bgDiv2, chartContainer2.firstChild);
 
-MidBottomGraph.setOption({
+RightTopGraph.setOption({
     backgroundColor: 'transparent',
     graphic: {
         type: 'group',
@@ -43,10 +43,10 @@ MidBottomGraph.setOption({
                     blur: 50 // 设置高斯模糊程度
                 }
             }
-        ],
+        ]
     },
     title: {
-        text: '杂项制品',
+        text: '服装首饰',
         textStyle: {
             color: '#72aff3',
             // fontStyle: 'oblique',
@@ -114,14 +114,20 @@ MidBottomGraph.setOption({
             type: 'line',
             color: '#3396ef',
             data: newData,
-            smooth: true
+            smooth: true,
+            lineStyle: {
+                width: 3,
+            }
         },
         {
             name: '重量',
             color: '#afd7ec',
             type: 'line',
             data: newData,
-            smooth: true
+            smooth: true,
+            lineStyle: {
+                width: 3,
+            }
         }
     ],
     legend: {
@@ -131,4 +137,4 @@ MidBottomGraph.setOption({
 
     },
 });
-MidBottomGraph.render;
+RightTopGraph.render;

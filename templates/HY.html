@@ -69,7 +69,7 @@
 				<el-menu-item index="1" style="left: 5%; font-size: 18px; width: 80px;">
 				</el-menu-item>
 				<div id="menuOD" style="position:absolute; left:2%; width: 5%; z-index: 3">
-					<el-menu-item class="od" index="2" onclick="showOD()"
+					<el-menu-item class="od" index="2"
 						style="top:2px;  font-size: 18px; width: 200px;border-bottom-left-radius:25px;border-top-left-radius:25px;">
 						<el-link :underline="false" href="/" target="_self" style="top: -4px;left:10px;">
 							<font style="font-weight: bold" color="#000010" size=5px face='楷体' weight='bold'>货运态势分析
@@ -80,7 +80,7 @@
 					</el-menu-item>
 				</div>
 				<div id="menuHY" style="position:absolute; left:12%;width: 5%; z-index: 2">
-					<el-menu-item class="hy" index="3" onclick="showHY()"
+					<el-menu-item class="hy" index="3"
 						style="position:absolute; top:2px; font-size: 18px; width: 280px;border-bottom-right-radius:25px;border-top-right-radius:25px;">
 						<i class="el-icon-arrow-right"></i>
 						<el-link :underline="false" href="/HY" target="_self" style="top: -4px; left: -16px">
@@ -94,8 +94,7 @@
 				<img src="../static/img/Logo/CRexpress.png" style="position:absolute; left: 35%; top: -2%" width="450"
 					height="60" alt="">
 				<div id="menuTable" style="position:absolute; left:38%;width: 10%">
-					<el-menu-item class="bd" index="4" style="top:2px; left: 200%; font-size: 18px"
-						onclick="openTable()">
+					<el-menu-item class="bd" index="4" style="top:2px; left: 200%; font-size: 18px">
 						<i class="el-icon-s-marketing"></i>
 						<el-link :underline="false" href="/ContainersGraph" target="_self"
 							style="top: -4px; left: 16px">
@@ -106,8 +105,7 @@
 				</div>
 
                 <div id="menuPredict" style="position:absolute; left:49%;width: 10%">
-					<el-menu-item class="bd" index="5" style="top:2px; left: 200%; font-size: 18px"
-						onclick="openTable()">
+					<el-menu-item class="bd" index="5" style="top:2px; left: 200%; font-size: 18px">
 						<i class="el-icon-guide"></i>
 						<el-link :underline="false" href="/Prediction" target="_self"
 							style="top: -4px; left: 16px">

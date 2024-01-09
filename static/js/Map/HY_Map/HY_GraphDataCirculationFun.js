@@ -119,13 +119,13 @@ function GraphsInTwoSidesDataUpdate(value_port, start_time, end_time, interval) 
 	})
 
 	// 班列计划开行与实际开行图表数据更新
-	$.post('/trainplan_data', TrainPlanGraphData).done(function(data) {
-		// console.log(data)
-		TrainExpectedAndActualPlan_graph_option.xAxis.data = data['time'];
-		TrainExpectedAndActualPlan_graph_option.series[0].data = data['plan'];
-		TrainExpectedAndActualPlan_graph_option.series[1].data = data['real'];
-		TrainExpectedAndActualPlan_graph.setOption(TrainExpectedAndActualPlan_graph_option);
-	})
+	// $.post('/trainplan_data', TrainPlanGraphData).done(function(data) {
+	// 	// console.log(data)
+	// 	TrainExpectedAndActualPlan_graph_option.xAxis.data = data['time'];
+	// 	TrainExpectedAndActualPlan_graph_option.series[0].data = data['plan'];
+	// 	TrainExpectedAndActualPlan_graph_option.series[1].data = data['real'];
+	// 	TrainExpectedAndActualPlan_graph.setOption(TrainExpectedAndActualPlan_graph_option);
+	// })
 }
 
 function GraphDataCirculationShow() {

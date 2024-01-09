@@ -1,6 +1,6 @@
 db_config = {
-    'id': 'temptest',
-    'psw': 'temptest',
-    'host': '81.70.76.251:1521/helowin',
+    'id': 'CRExpress_sys',
+    'psw': 'CRExpress_sys',
+    'host': '101.43.199.158:1521/helowin',
     'encoding': 'UTF-8'
 }

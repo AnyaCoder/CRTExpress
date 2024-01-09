@@ -1,181 +1,179 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>YC预测</title>
-    <link rel="shortcut icon" href="../static/img/Favicon/OD.ico"/>
+    <head>
+        <meta charset="UTF-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <title>YC预测</title>
+        <link rel="shortcut icon" href="../static/img/Favicon/OD.ico"/>
 
-    <!-- 高德地图相关的 -->
-    <script src="https://webapi.amap.com/maps?v=1.4.15&key=93c37a776b049cdb0b88f7a46b2dee1c"></script>
-    <script src="https://webapi.amap.com/loader.js"></script>
-    <script src="https://webapi.amap.com/loca?v=2.0.0&key=93c37a776b049cdb0b88f7a46b2dee1c"></script>
+        <!-- 高德地图相关的 -->
+        <script src="https://webapi.amap.com/maps?v=1.4.15&key=93c37a776b049cdb0b88f7a46b2dee1c"></script>
+        <script src="https://webapi.amap.com/loader.js"></script>
+        <script src="https://webapi.amap.com/loca?v=2.0.0&key=93c37a776b049cdb0b88f7a46b2dee1c"></script>
 
-    <!-- 引入Element UI 相关组件的js、css文件 -->
-    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
-    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
-    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
-
-
-    <!-- 引入实现图表功能的js文件 -->
-    <script src="../static/js/echarts.js"></script>
-    <script src="../static/js/jQuery.js"></script>
-
-    <!-- 引入与图表主题相关的js文件 -->
-    <script src="../static/js/GraphTheme/dark.js"></script>
-    <script src="../static/js/GraphTheme/chalk.js"></script>
-
-    <!-- 顶部导航栏的按钮 -->
-    <link rel="stylesheet" type="text/css" href="../static/css/element.css"/>
+        <!-- 引入Element UI 相关组件的js、css文件 -->
+        <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+        <script src="https://unpkg.com/element-ui/lib/index.js"></script>
 
 
-    <!-- 其它 -->
-    <link rel="stylesheet" type="text/css" href="../static/css/drawer.css">
-    <link rel="stylesheet" type="text/css" href="../static/css/Prediction.css">
+        <!-- 引入实现图表功能的js文件 -->
+        <script src="../static/js/echarts.js"></script>
+        <script src="../static/js/jQuery.js"></script>
 
-    <link rel="stylesheet" type="text/css" href="../static/css/Button(import)/btn_shining.css">
+        <!-- 引入与图表主题相关的js文件 -->
+        <script src="../static/js/GraphTheme/dark.js"></script>
+        <script src="../static/js/GraphTheme/chalk.js"></script>
 
-    <style type="text/css">
-        * {
-            padding: 0;
-            margin: 0;
-        }
+        <!-- 顶部导航栏的按钮 -->
+        <link rel="stylesheet" type="text/css" href="../static/css/element.css"/>
 
-        html,
-        body {
-            height: 100%;
-            overflow: hidden;
-        }
-    </style>
 
-</head>
+        <!-- 其它 -->
+        <link rel="stylesheet" type="text/css" href="../static/css/drawer.css">
+        <link rel="stylesheet" type="text/css" href="../static/css/Prediction.css">
 
-<body>
-<link rel="stylesheet" type="text/css" href="../static/css/toplan.css"/>
-<!-- 下面是页面标题 -->
-<div id="toplan">
+        <link rel="stylesheet" type="text/css" href="../static/css/Button(import)/btn_shining.css">
 
-    <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" @select="handleSelect" style="position: absolute; left:0px; width: 200%;
-				box-shadow: 0px 0px 10px 6px rgba(0,0,0,0.3);
-				background-image: linear-gradient(-45deg, #1a55c2,#005AA7,#8ABCD1);
-				background-size: 200% 200%;
-				animation: gradientBG 5s ease infinite;">
-        <el-menu-item index="1" style="left: 5%; font-size: 18px; width: 80px;">
-        </el-menu-item>
-        <div id="menuOD" style="position:absolute; left:2%; width: 5%; z-index: 3">
-            <el-menu-item class="od" index="2" onclick="showOD()"
-                          style="top:2px;  font-size: 18px; width: 200px;border-bottom-left-radius:25px;border-top-left-radius:25px;">
-                <el-link :underline="false" href="/" target="_self" style="top: -4px;left:10px;">
-                    <font style="font-weight: bold" color="#000010" size=5px face='楷体' weight='bold'>货运态势分析
-                    </font>
-                </el-link>
-                <i class="el-icon-arrow-left"></i>
+        <style type="text/css">
+            * {
+                padding: 0;
+                margin: 0;
+            }
 
+            html,
+            body {
+                height: 100%;
+                overflow: hidden;
+            }
+        </style>
+
+    </head>
+
+    <body>
+    <link rel="stylesheet" type="text/css" href="../static/css/toplan.css"/>
+    <!-- 下面是页面标题 -->
+    <div id="toplan">
+
+        <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" @select="handleSelect" style="position: absolute; left:0px; width: 200%;
+                        box-shadow: 0px 0px 10px 6px rgba(0,0,0,0.3);
+                        background-image: linear-gradient(-45deg, #1a55c2,#005AA7,#8ABCD1);
+                        background-size: 200% 200%;
+                        animation: gradientBG 5s ease infinite;">
+            <el-menu-item index="1" style="left: 5%; font-size: 18px; width: 80px;">
             </el-menu-item>
-        </div>
-        <div id="menuHY" style="position:absolute; left:12%;width: 5%; z-index: 2">
-            <el-menu-item class="hy" index="3" onclick="showHY()"
-                          style="position:absolute; top:2px; font-size: 18px; width: 280px;border-bottom-right-radius:25px;border-top-right-radius:25px;">
-                <i class="el-icon-arrow-right"></i>
-                <el-link :underline="false" href="/HY" target="_self" style="top: -4px; left: -16px">
-                    <font style="font-weight: bold" color="#000010" size=5px face='楷体' weight='bold'>班列集装箱态势分析
-                    </font>
-                </el-link>
-            </el-menu-item>
-        </div>
-        <img src="../static/img/Logo/LOGOtrain.png" style="position:absolute; left: 24%; top: -50%" width="280"
-             height="110" alt="">
-        <img src="../static/img/Logo/CRexpress.png" style="position:absolute; left: 35%; top: -2%" width="450"
-             height="60" alt="">
-        <div id="menuTable" style="position:absolute; left:38%;width: 10%">
-            <el-menu-item class="bd" index="4" style="top:2px; left: 200%; font-size: 18px"
-                          onclick="openTable()">
-                <i class="el-icon-s-marketing"></i>
-                <el-link :underline="false" href="/ContainersGraph" target="_self"
-                         style="top: -4px; left: 16px">
-                    <font style="font-weight: bold" color="#000010" size=5px face='楷体' weight='bold'>详情统计
-                    </font>
-                </el-link>
-            </el-menu-item>
-        </div>
+            <div id="menuOD" style="position:absolute; left:2%; width: 5%; z-index: 3">
+                <el-menu-item class="od" index="2"
+                              style="top:2px;  font-size: 18px; width: 200px;border-bottom-left-radius:25px;border-top-left-radius:25px;">
+                    <el-link :underline="false" href="/" target="_self" style="top: -4px;left:10px;">
+                        <font style="font-weight: bold" color="#000010" size=5px face='楷体' weight='bold'>货运态势分析
+                        </font>
+                    </el-link>
+                    <i class="el-icon-arrow-left"></i>
 
-        <div id="menuPredict" style="position:absolute; left:49%;width: 10%">
-            <el-menu-item class="bd" index="5" style="top:2px; left: 200%; font-size: 18px"
-                          onclick="openTable()">
-                <i class="el-icon-guide"></i>
-                <el-link :underline="false" href="/Prediction" target="_self"
-                         style="top: -4px; left: 16px">
-                    <font style="font-weight: bold" color="#000010" size=5px face='楷体' weight='bold'>数据预测
-                    </font>
-                </el-link>
-            </el-menu-item>
-        </div>
-    </el-menu>
-</div>
-<script>
-    var top_lan = new Vue({
-        el: '#toplan',
-        data() {
-            return {
-                activeIndex: '5',
-                value1: true,
+                </el-menu-item>
+            </div>
+            <div id="menuHY" style="position:absolute; left:12%;width: 5%; z-index: 2">
+                <el-menu-item class="hy" index="3"
+                              style="position:absolute; top:2px; font-size: 18px; width: 280px;border-bottom-right-radius:25px;border-top-right-radius:25px;">
+                    <i class="el-icon-arrow-right"></i>
+                    <el-link :underline="false" href="/HY" target="_self" style="top: -4px; left: -16px">
+                        <font style="font-weight: bold" color="#000010" size=5px face='楷体' weight='bold'>班列集装箱态势分析
+                        </font>
+                    </el-link>
+                </el-menu-item>
+            </div>
+            <img src="../static/img/Logo/LOGOtrain.png" style="position:absolute; left: 24%; top: -50%" width="280"
+                 height="110" alt="">
+            <img src="../static/img/Logo/CRexpress.png" style="position:absolute; left: 35%; top: -2%" width="450"
+                 height="60" alt="">
+            <div id="menuTable" style="position:absolute; left:38%;width: 10%">
+                <el-menu-item class="bd" index="4" style="top:2px; left: 200%; font-size: 18px">
+                    <i class="el-icon-s-marketing"></i>
+                    <el-link :underline="false" href="/ContainersGraph" target="_self"
+                             style="top: -4px; left: 16px">
+                        <font style="font-weight: bold" color="#000010" size=5px face='楷体' weight='bold'>详情统计
+                        </font>
+                    </el-link>
+                </el-menu-item>
+            </div>
 
-            };
-        },
-        methods: {
-            handleSelect(key, keyPath) {
-                console.log(key, keyPath);
-            },
-        }
-    })
-</script>
-
-<div id="Map" style="position:absolute; width: 3000px; height:100%;z-index: 1; background-color: #252121;"></div>
-
-
-<script>// 地图初始化
-var map = new AMap.Map('Map', {
-    zoom: 4.0,
-    // 地图初始化的位置
-    center: [75.000923, 45.675807],
-    showLabel: false,
-    viewMode: '3D',
-    mapStyle: 'amap://styles/darkblue',
-});
-</script>
-
-<script src="../static/js/PredictionCharts/Update.js"></script>
-
-<div id="LeftTopGraph" style="width: 30%; height: 45%;z-index: 3;position: absolute;left: 1%;top:10%;"></div>
-<script src="../static/Page_1/lefttop.js"></script>
-
-<div id="RightTopGraph" style="width: 30%; height: 45%;z-index: 3;position: absolute;right: 1%;top:10%;"></div>
-<script src="../static/Page_1/righttop.js"></script>
-
-<div id="LeftBottomGraph" style="width: 30%; height: 45%;z-index: 3;position: absolute;left:1%;bottom:-3%;"></div>
-<script src="../static/Page_1/leftbottom.js"></script>
-
-<div id="RightBottomGraph" style="width: 30%; height: 45%;z-index: 3;position: absolute;right:1%;bottom:-3%;"></div>
-<script src="../static/Page_1/rightbottom.js"></script>
-
-<div id="MidTopGraph" style="width: 30%; height: 45%;z-index: 3;position: absolute;left:35%;top: 10%;"></div>
-<script src="../static/Page_1/midtop.js"></script>
-
-<div id="MidBottomGraph" style="width: 30%; height: 45%;z-index: 3;position: absolute;left:35%;bottom:-3%"></div>
-<script src="../static/Page_1/midbottom.js"></script>
-
-<script src="../static/js/PredictionCharts/onclick_change_page.js"></script>
-<script>
-    now_page = 2;
-    change_page(); // 初始化
-</script>
-
-<div id="button-shining" style="z-index: 4; position: absolute; left: 45%; top: 52%;">
-    <div class="container">
-         <a class="btn" onclick="change_page()" style="font-family: 楷体">切换到下一页</a>
+            <div id="menuPredict" style="position:absolute; left:49%;width: 10%">
+                <el-menu-item class="bd" index="5" style="top:2px; left: 200%; font-size: 18px">
+                    <i class="el-icon-guide"></i>
+                    <el-link :underline="false" href="/Prediction" target="_self"
+                             style="top: -4px; left: 16px">
+                        <font style="font-weight: bold" color="#000010" size=5px face='楷体' weight='bold'>数据预测
+                        </font>
+                    </el-link>
+                </el-menu-item>
+            </div>
+        </el-menu>
     </div>
-</div>
+    <script>
+        var top_lan = new Vue({
+            el: '#toplan',
+            data() {
+                return {
+                    activeIndex: '5',
+                    value1: true,
 
-</body>
+                };
+            },
+            methods: {
+                handleSelect(key, keyPath) {
+                    console.log(key, keyPath);
+                },
+            }
+        })
+    </script>
+
+    <div id="Map" style="position:absolute; width: 3000px; height:100%;z-index: 1; background-color: #252121;"></div>
+
+
+    <script>// 地图初始化
+    var map = new AMap.Map('Map', {
+        zoom: 4.0,
+        // 地图初始化的位置
+        center: [75.000923, 45.675807],
+        showLabel: false,
+        viewMode: '3D',
+        mapStyle: 'amap://styles/darkblue',
+    });
+    </script>
+
+    <script src="../static/js/PredictionCharts/Update.js"></script>
+
+    <div id="LeftTopGraph" style="width: 30%; height: 45%;z-index: 3;position: absolute;left: 1%;top:10%;"></div>
+    <script src="../static/js/PredictionCharts/lefttop.js"></script>
+
+    <div id="RightTopGraph" style="width: 30%; height: 45%;z-index: 3;position: absolute;right: 1%;top:10%;"></div>
+    <script src="../static/js/PredictionCharts/righttop.js"></script>
+
+    <div id="LeftBottomGraph" style="width: 30%; height: 45%;z-index: 3;position: absolute;left:1%;bottom:-3%;"></div>
+    <script src="../static/js/PredictionCharts/leftbottom.js"></script>
+
+    <div id="RightBottomGraph" style="width: 30%; height: 45%;z-index: 3;position: absolute;right:1%;bottom:-3%;"></div>
+    <script src="../static/js/PredictionCharts/rightbottom.js"></script>
+
+    <div id="MidTopGraph" style="width: 30%; height: 45%;z-index: 3;position: absolute;left:35%;top: 10%;"></div>
+    <script src="../static/js/PredictionCharts/midtop.js"></script>
+
+    <div id="MidBottomGraph" style="width: 30%; height: 45%;z-index: 3;position: absolute;left:35%;bottom:-3%"></div>
+    <script src="../static/js/PredictionCharts/midbottom.js"></script>
+
+    <script src="../static/js/PredictionCharts/onclick_change_page.js"></script>
+    <script>
+        now_page = 2;
+        change_page(); // 初始化
+    </script>
+
+    <div id="button-shining" style="z-index: 4; position: absolute; left: 45%; top: 52%;">
+        <div class="container">
+            <a class="btn" onclick="change_page()" style="font-family: 楷体">切换到下一页</a>
+        </div>
+    </div>
+
+    </body>
 </html>

@@ -37,105 +37,134 @@
 				overflow: auto;
 			}
 		</style>
+        <link rel="stylesheet" href="../../static/css/GraphsIntegration/FashionShow.css">
 		<meta charset="utf-8">
-		<title>集成图表</title>
 		<script type="text/javascript" src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.6.0.min.js"></script>
 		<script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts@5.3.3/dist/echarts.min.js"></script>
 		<link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css" />
 		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 		<script src="https://unpkg.com/element-ui/lib/index.js"></script>
-		<title>集装箱接入发出</title>
 	</head>
 	<body>
+		<!-- 导航栏部分 -->
+		<div id="navigationBar_title">
+			导航栏
+		</div>
 		<div id="navigationBar">
 			<el-aside id="menu" style="position:absolute;height: 100%;z-index:2;width: 100%;">
 				<el-row class="tac" style="height: 100%;width: 100%;">
 					<el-col :span="12" style="height: 100%;width: 100%;">
 						<el-menu style="height: 100%;" class="el-menu-vertical-demo" @open="handleClose"
-							@close="handleClose" :default-openeds="openeds">
+							active-text-color='' @close="handleClose" :default-openeds="openeds"
+							background-color="#f4e6cf">
 							<el-submenu index="1">
-								<template slot="title">
+								<div slot="title">
 									<i class="el-icon-location"></i>
-									<span>态势分析大屏</span>
-								</template>
+									<span>
+										<font style="font-weight: bold; font-style: italic" color="#0b0b0a" size=4%>
+											态势分析大屏
+										</font>
+									</span>
+								</div>
 								<el-menu-item index="1-1">
 									<el-link :underline="false" href="/" target="_self" icon="el-icon-s-promotion">
-										<font color="#333" size=3px>货运态势分析</font>
+										<font style="font-weight: bold;" color="#545c64" size=3%>货运态势分析</font>
 									</el-link>
 								</el-menu-item>
 								<el-menu-item index="1-2">
 									<el-link :underline="false" href="/HY" target="_self" icon="el-icon-truck">
-										<font color="#333" size=3px>班列集装箱态势分析</font>
+										<font style="font-weight: bold;" color="#545c64" size=3%>班列集装箱态势分析</font>
+									</el-link>
+								</el-menu-item>
+                                <el-menu-item index="1-3">
+									<el-link :underline="false" href="/Prediction" target="_self" icon="el-icon-s-promotion">
+										<font style="font-weight: bold;" color="#545c64" size=3%>预测大屏</font>
 									</el-link>
 								</el-menu-item>
 							</el-submenu>
 							<el-submenu index="2">
-								<template slot="title">
+								<div slot="title">
 									<i class="el-icon-menu"></i>
-									<span>详情统计</span>
-								</template>
-								<el-menu-item-group>
-									<el-menu-item index="2-1">
-										<el-link :underline="false" href="/MenuCover" target="_self"
-											icon="el-icon-s-platform">
-											<font color="#333" size=3px>班列掠影</font>
-										</el-link>
-									</el-menu-item>
-								</el-menu-item-group>
-								<el-menu-item-group>
-									<el-menu-item index="2-2">
-										<el-link :underline="false" href="/ContainersGraph" target="_self"
-											icon="el-icon-s-data">
-											<font color="#333" size=2px>集装箱部分</font>
-										</el-link>
-									</el-menu-item>
-									<el-menu-item indexd="2-3">
-										<el-link :underline="false" href="/TrainSituationAnalysis" target="_self"
-											icon="el-icon-s-data">
-											<font color="#333" size=2px>班列情况分析</font>
-										</el-link>
-									</el-menu-item>
-									<el-menu-item indexd="2-4">
-										<el-link :underline="false" href="/PortOperationAbilityAnalysis" target="_self"
-											icon="el-icon-s-data">
-											<font color="#333" size=2px>口岸/站点作业能力分析</font>
-										</el-link>
-									</el-menu-item>
-									<el-menu-item indexd="2-5">
-										<el-link :underline="false" href="/GoodsGraph" target="_self"
-											icon="el-icon-s-data">
-											<font color="#333" size=2px>货物部分</font>
-										</el-link>
-									</el-menu-item>
-								</el-menu-item-group>
-							</el-submenu>
-				</el-row>
-				<script>
-					var menu = new Vue({
-						el: "#menu",
-						data() {
-							return {
-								openeds: ['1', '2'],
-								uniqueOpened: false
-							}
-						},
-						methods: {
-							handleOpen(key, keyPath) {
-								console.log(key, keyPath);
-							},
-							handleClose(key, keyPath) {
-								console.log(key, keyPath);
-							},
+									<span>
+										<font style="font-weight: bold; font-style: italic" color="#545c64" size=4%>
+											详情统计
+										</font>
+									</span>
+								</div>
+								<el-menu-item index="2-1">
+									<el-link :underline="false" href="/ContainersGraph" target="_self"
+										icon="el-icon-s-data">
+										<font style="font-weight: bold;" color="#545c64" size=3%>集装箱部分</font>
+									</el-link>
+								</el-menu-item>
+								<el-menu-item indexd="2-2">
+									<el-link :underline="false" href="/TrainSituationAnalysis" target="_self"
+										icon="el-icon-s-data">
+										<font style="font-weight: bold;" color="#545c64" size=3%>班列情况分析</font>
+									</el-link>
+								</el-menu-item>
+								<el-menu-item indexd="2-3">
 
-						}
-					})
-				</script>
+									<el-link :underline="false" href="/PortOperationAbilityAnalysis" target="_self"
+										icon="el-icon-s-data">
+										<font style="font-weight: bold;" color="#545c64" size=3%>口岸/站点作业能力分析</font>
+									</el-link>
+								</el-menu-item>
+								<el-menu-item indexd="2-4">
+									<el-link :underline="false" href="/GoodsGraph" target="_self" icon="el-icon-s-data">
+										<font style="font-weight: bold;" color="#545c64" size=3%>货物部分</font>
+									</el-link>
+								</el-menu-item>
+							</el-submenu>
+							<el-submenu index="3">
+								<div slot="title">
+									<i class="el-icon-view"></i>
+									<span>
+										<font style="font-weight: bold; font-style: italic" color="#0b0b0a" size=4%>
+											风采展示
+										</font>
+									</span>
+								</div>
+								<el-menu-item index="3-1">
+                                    <div
+										style="position: absolute; left: 0; width: 100%; height: 100%; background-color: #ffffff;">
+									</div>
+									<el-link :underline="false" href="/MenuCover" target="_self"
+										icon="el-icon-s-platform">
+										<font style="font-weight: bold;" color="#545c64" size=3%>班列掠影</font>
+									</el-link>
+								</el-menu-item>
+                            </el-submenu>
+						</el-menu>
+
+					</el-col>
+				</el-row>
 			</el-aside>
 		</div>
+		<script>
+			var menu = new Vue({
+				el: "#menu",
+				data() {
+					return {
+						openeds: ['1', '2', '3'],
+						uniqueOpened: false
+					}
+				},
+				methods: {
+					handleOpen(key, keyPath) {
+						console.log(key, keyPath);
+					},
+					handleClose(key, keyPath) {
+						console.log(key, keyPath);
+					},
+
+				}
+			})
+		</script>
 		<div id="carousel" style=" z-index: 1;top: 20px;width: 100%;">
 			<el-carousel indicator-position="outside" height="650px" type="card">
 				<el-carousel-item>
-					<img src="../../static/img/inctroduction.jpg" alt="图片加载失败" width="100%" height="55%">
+					<img src="../../static/img/introduction.jpg" alt="图片加载失败" width="100%" height="55%">
 
 					<h2>&emsp;简介</h2>
 					<div style="position:absolute;left:5%;height: 25%;width: 90%;">
@@ -171,7 +200,7 @@
 
 
 					<div style="position:absolute; top:30%; width: 100%; height: 70%;">
-						<img src="../../static/img/containers.png" alt="图片加载失败" width="100%" height="100%">
+						<img src="../../static/img/containers.jpg" alt="图片加载失败" width="100%" height="100%">
 					</div>
 				</el-carousel-item>
 
@@ -184,7 +213,7 @@
 					</div>
 
 					<div style="position:absolute; top:30%; width: 100%; height: 70%;">
-						<img src="../../static/img/port.jpg" alt="图片加载失败" width="100%" height="100%">
+						<img src="../../static/img/port.png" alt="图片加载失败" width="100%" height="100%">
 					</div>
 				</el-carousel-item>
 
@@ -241,33 +270,6 @@
 			})
 		</script>
 
-		<script type="text/javascript" src="../static/js/ctrl_box/ctrl_box_elements.js"></script>
-		<script type="text/javascript" src="../static/js/ctrl_box/ctrl_box_elements.js"></script>
-
-		<script type="text/javascript" src="../static/js/ctrl_radar/ctrl_radar.js"></script>
-		<script type="text/javascript" src="../static/js/ctrl_radar/ctrl_radar_datepicker.js"></script>
-
-		<script type="text/javascript" src="../static/js/bak/ctrl_chart.js"></script>
-		<script type="text/javascript" src="../static/js/bak/main.js"></script>
-
-		<script type="text/javascript" src="../static/js/ctrl_timedist/ctrl_timedist.js"></script>
-		<script type="text/javascript" src="../static/js/ctrl_timedist/ctrl_timedist_elements.js"></script>
-
-
-		<script type="text/javascript" src="../static/js/ctrl_timespan/ctrl_timespan.js"></script>
-		<script type="text/javascript" src="../static/js/ctrl_timespan/ctrl_timespan_elements.js"></script>
-
-		<script type="text/javascript" src="../static/js/ctrl_train_boxplot/ctrl_train_boxplot.js"></script>
-		<script type="text/javascript" src="../static/js/ctrl_train_boxplot/ctrl_train_boxplot_elements.js"></script>
-
-		<script type="text/javascript" src="../static/js/ctrl_traininfo/ctrl_traininfo.js"></script>
-		<script type="text/javascript" src="../static/js/ctrl_traininfo/ctrl_traininfo_elements.js"></script>
-
-		<script type="text/javascript" src="../static/js/ctrl_trainplan/ctrl_trainplan.js"></script>
-		<script type="text/javascript" src="../static/js/ctrl_trainplan/ctrl_trainplan_elements.js"></script>
-
-		<script type="text/javascript" src="../static/js/ctrl_traintime/ctrl_traintime.js"></script>
-		<script type="text/javascript" src="../static/js/ctrl_traintime/ctrl_traintime_elements.js"></script>
 
 	</body>
 </html>

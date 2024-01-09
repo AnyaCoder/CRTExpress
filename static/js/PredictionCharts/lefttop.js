@@ -116,14 +116,20 @@ LeftTopGraph.setOption({
             type: 'line',
             color: '#3396ef',
             data: newData,
-            smooth: true
+            smooth: true,
+            lineStyle: {
+                width: 3,
+            }
         },
         {
             name: '重量',
             color: '#afd7ec',
             type: 'line',
             data: newData,
-            smooth: true
+            smooth: true,
+            lineStyle: {
+                width: 3,
+            }
         }
     ],
     legend: {

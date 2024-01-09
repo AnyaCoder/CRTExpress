@@ -3,14 +3,19 @@
 """
 用flask框架搭建的中欧班列货运数据集成分析页面
 """
+import random
 
 from flask import *
+
+import predict
 from G1_GetData import *
 from G2_GetData import *
+from G4_PredictData import *
 from G3_utils import *
-from datetime import datetime
+from datetime import datetime, date, timedelta
 
 app = Flask(__name__, template_folder='templates')
+
 
 
 @app.route('/')
@@ -34,72 +39,65 @@ def Prediction():
     return render_template('YC.html')
 
 
+@app.route('/Prediction_Data', methods=['GET', 'POST'])
+def Prediction_Data():
+    """
+    请求数据格式：
+    req_data = {
+        "page_index": 0
+        （0 - 表示第一组预测货物；1 - 表示第二组预测货物）
+    }
+
+    返回值数据格式：
+    res = {
+        "种类_1": {
+            "real_time": [r_t1, r_t2, ...],
+            "real_num": [r_n1, r_n2, ...],
+            "real_weight": [r_w1, r_w2, ...],
+
+            "predict_time": [p_t1, p_t2, ...],
+            "predict_num": [p_n1, p_n2, ...],
+            "predict_weight": [p_w1, p_w2, ...]
+        },
+        "种类_2": {
+            "real_time": [r_t1, r_t2, ...],
+            "real_num": [r_n1, r_n2, ...],
+            "real_weight": [r_w1, r_w2, ...],
+
+            "predict_time": [p_t1, p_t2, ...],
+            "predict_num": [p_n1, p_n2, ...],
+            "predict_weight": [p_w1, p_w2, ...]
+        },
+        ...
+    }
+    """
+    page_index = int(request.values["page_index"])
+    print(page_index)
+    predict.static_result.clear()
+    predict.static_result = Get_Goods_Prediction_Data(page_index)
+    # print(predict.static_result)
+    # print(predict.static_result['生活用品'])
+    return jsonify(predict.static_result)
+
+
 def random_init_data():
-    res = {"time": ['2021-12-12', '2021-12-13', '2021-12-14', '2021-12-15', '2021-12-16', '2021-12-17', '2021-12-18'],
-           "nums": [123, 456, 789, 322, 533, 666, 500],
-           "weights": [233, 444, 566, 322, 533, 666, 555]
+    _nums = [random.randint(200, 1000) for i in range(35)]
+    _date = []
+    _weights = [int(_nums[i] * random.uniform(0.5, 1.5)) for i in range(35)]
+    start_date = date(2022, 1, 1)
+    delta = timedelta(days=1)
+    for i in range(35):
+        _date.append(start_date.strftime('%Y-%m-%d'))
+        start_date += delta
+
+    res = {"time": _date,
+           "nums": _nums,
+           "weights": _weights
            }
     return jsonify(res)
 
 
-@app.route('/P1_DaliyLifeGoods_data', methods=['GET', 'POST'])
-def P1_DaliyLifeGoods_data():
-    return random_init_data()
 
-
-@app.route('/P1_FoodsGoods_data', methods=['GET', 'POST'])
-def P1_FoodsGoods_data():
-    return random_init_data()
-
-
-@app.route('/P1_ClothesGoods_data', methods=['GET', 'POST'])
-def P1_ClothesGoods_data():
-    return random_init_data()
-
-
-@app.route('/P1_DrawGoods_data', methods=['GET', 'POST'])
-def P1_DrawGoods_data():
-    return random_init_data()
-
-
-@app.route('/P1_OthersGoods_data', methods=['GET', 'POST'])
-def P1_OthersGoods_data():
-    return random_init_data()
-
-
-@app.route('/P1_WeaponsGoods_data', methods=['GET', 'POST'])
-def P1_WeaponsGoods_data():
-    return random_init_data()
-
-
-@app.route('/P2_MetalGoods_data', methods=['GET', 'POST'])
-def P1_MetalGoods_data():
-    return random_init_data()
-
-
-@app.route('/P2_ChemicalGoods_data', methods=['GET', 'POST'])
-def P2_ChemicalGoods_data():
-    return random_init_data()
-
-
-@app.route('/P2_MaterialGoods_data', methods=['GET', 'POST'])
-def P2_MaterialGoods_data():
-    return random_init_data()
-
-
-@app.route('/P2_ElectronicGoods_data', methods=['GET', 'POST'])
-def P2_ElectronicGoods_data():
-    return random_init_data()
-
-
-@app.route('/P2_TransportGoods_data', methods=['GET', 'POST'])
-def P2_TransportGoods_data():
-    return random_init_data()
-
-
-@app.route('/P2_MineGoods_data', methods=['GET', 'POST'])
-def P2_MineGoods_data():
-    return random_init_data()
 # ----------------------------------------------------------
 
 @app.route('/ContainersGraph')
@@ -345,22 +343,22 @@ def show_trainplan():
         return render_template('trainplan.html')
 
 
-@app.route('/trainplan_data', methods=['GET', 'POST'])
-def trainplan_data():
-    if request.method == 'GET':
-        pass
-    if request.method == 'POST':
-        start_time = datetime.strptime(request.form.get('start_time'), '%Y-%m-%d')
-        end_time = datetime.strptime(request.form.get('end_time'), '%Y-%m-%d')
-        # departure
-        dep = request.form.get('dep')
-        # destination
-        des = request.form.get('des')
-        # interval
-        interval = request.form.get('interval')
-        res = select_trainplan(start_time, end_time, dep, des)
-        res = split_data(res, start_time, end_time, interval, ['time', 'plan', 'real'])
-        return jsonify(res)
+# @app.route('/trainplan_data', methods=['GET', 'POST'])
+# def trainplan_data():
+#     if request.method == 'GET':
+#         pass
+#     if request.method == 'POST':
+#         start_time = datetime.strptime(request.form.get('start_time'), '%Y-%m-%d')
+#         end_time = datetime.strptime(request.form.get('end_time'), '%Y-%m-%d')
+#         # departure
+#         dep = request.form.get('dep')
+#         # destination
+#         des = request.form.get('des')
+#         # interval
+#         interval = request.form.get('interval')
+#         res = select_trainplan(start_time, end_time, dep, des)
+#         res = split_data(res, start_time, end_time, interval, ['time', 'plan', 'real'])
+#         return jsonify(res)
 
 
 @app.route('/traintime_data', methods=['GET', 'POST'])
